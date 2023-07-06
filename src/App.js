@@ -4,7 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import './App.css';
 
 import AuthService from "./services/auth.service";
-
+import DogService from "./services/dog.service";
 import Login from "./components/login";
 import Register from "./components/register";
 import Home from "./components/Home";
@@ -12,7 +12,7 @@ import Profile from "./components/profile";
 import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
-
+import Dog from "./components/Dog"
 
 // function App_backUp() {
 //   return (
@@ -53,6 +53,10 @@ const App = () => {
   const logOut = () => {
     AuthService.logout();
   };
+
+  const addDog = () =>{
+    DogService.AddDogTest();
+  }
 
   return (
     <div>
@@ -104,6 +108,11 @@ const App = () => {
                 LogOut
               </a>
             </li>
+            <li className="nav-item">
+            <Link to={"/addDog"} className="nav-link">
+                Add Dog!
+            </Link>
+            </li>
           </div>
         ) : (
           <div className="navbar-nav ml-auto">
@@ -132,6 +141,7 @@ const App = () => {
           <Route path="/user" element={<BoardUser/>} />
           <Route path="/mod" element={<BoardModerator/>} />
           <Route path="/admin" element={<BoardAdmin/>} />
+          <Route path="/addDog" element={<Dog />} />
         </Routes>
       </div>
     </div>
