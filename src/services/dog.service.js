@@ -11,9 +11,24 @@ const AddDog = (dogObj) =>{
     return axios.post(API_URL, dogObj,  {headers:authHeader()})
  }
 
+ const getDog = (id) =>{
+    return axios.get(API_URL + "/" + id, {headers:authHeader()})
+ }
+
+ const deleteDog =(id)=>{
+    return axios.delete(API_URL +"/"+id ,{headers:authHeader()})
+ }
+
+ const updateDog = (id, dogObj) =>{
+    return axios.put(API_URL + "/" +id, dogObj, {headers:authHeader()} )
+ }
+
 
 const DogService = {
     AddDogTest,
-    AddDog
+    AddDog,
+    getDog,
+    deleteDog,
+    updateDog
 }
 export default DogService;

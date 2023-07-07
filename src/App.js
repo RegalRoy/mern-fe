@@ -13,7 +13,8 @@ import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
 import Dog from "./components/Dog"
-
+import ShowDogDetails from './components/ShowDogDetails';
+import UpdateDogDetails from './components/UpdateDogDetails';
 // function App_backUp() {
 //   return (
 //     <div className="App">
@@ -142,6 +143,8 @@ const App = () => {
           <Route path="/mod" element={<BoardModerator/>} />
           <Route path="/admin" element={<BoardAdmin/>} />
           <Route path="/addDog" element={<Dog />} />
+          <Route path="/viewDog/:id" element={<ShowDogDetails />} />
+          <Route path='/update-dog/:id' element={<UpdateDogDetails />} />
         </Routes>
       </div>
     </div>
