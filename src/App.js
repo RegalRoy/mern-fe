@@ -15,6 +15,9 @@ import BoardAdmin from "./components/BoardAdmin";
 import Dog from "./components/Dog"
 import ShowDogDetails from './components/ShowDogDetails';
 import UpdateDogDetails from './components/UpdateDogDetails';
+import AddDate from './components/AddDate';
+import GetDate from './components/GetDate';
+import ViewDate from './components/ViewDate'
 // function App_backUp() {
 //   return (
 //     <div className="App">
@@ -114,6 +117,16 @@ const App = () => {
                 Add Dog!
             </Link>
             </li>
+            <li className="nav-item">
+            <Link to={"/addDate"} className="nav-link">
+                Add Dates!
+            </Link>
+            </li>
+            <li className="nav-item">
+            <Link to={"/getDate"} className="nav-link">
+                Your Dates!
+            </Link>
+            </li>
           </div>
         ) : (
           <div className="navbar-nav ml-auto">
@@ -145,6 +158,9 @@ const App = () => {
           <Route path="/addDog" element={<Dog />} />
           <Route path="/viewDog/:id" element={<ShowDogDetails />} />
           <Route path='/update-dog/:id' element={<UpdateDogDetails />} />
+          <Route path='/addDate' element={<AddDate />} />
+          <Route path='/getDate' element={<GetDate />} />
+          <Route path='/viewDate/:id' element={<ViewDate />} />
         </Routes>
       </div>
     </div>
