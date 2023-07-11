@@ -8,7 +8,8 @@ const Home = () => {
   useEffect(() => {
     UserService.getPublicContent().then(
       (response) => {
-        setContent(response.data);
+        console.log(response.data.message);
+        setContent(response.data.message);
       },
       (error) => {
         const _content =
@@ -24,7 +25,7 @@ const Home = () => {
   return (
     <div className="container">
       <header className="jumbotron">
-        <h3>{content}</h3>
+        <img src={content} alt="alt title" />
       </header>
     </div>
   );

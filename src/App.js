@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from "./logo/snifferslogo-removebg-preview.png"
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import './App.css';
@@ -66,7 +66,7 @@ const App = () => {
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <Link to={"/"} className="navbar-brand">
-          PET DATES!
+        <img src={logo} alt="logo" />
         </Link>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
@@ -119,12 +119,12 @@ const App = () => {
             </li>
             <li className="nav-item">
             <Link to={"/addDate"} className="nav-link">
-                Add Dates!
+                Add a Playdate!
             </Link>
             </li>
             <li className="nav-item">
             <Link to={"/getDate"} className="nav-link">
-                Your Dates!
+                Your Playdate!
             </Link>
             </li>
           </div>
