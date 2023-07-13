@@ -19,6 +19,8 @@ import AddDate from './components/AddDate';
 import GetDate from './components/GetDate';
 import ViewDate from './components/ViewDate'
 import EditDate from './components/EditDate'
+import GetDateTest from './components/GetDateTest';
+import ViewAvailableDates from './components/ViewAvailableDates'
 // function App_backUp() {
 //   return (
 //     <div className="App">
@@ -59,7 +61,7 @@ const App = () => {
     AuthService.logout();
   };
 
-  const addDog = () =>{
+  const addDog = () => {
     DogService.AddDogTest();
   }
 
@@ -67,7 +69,7 @@ const App = () => {
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <Link to={"/"} className="navbar-brand">
-        <img src={logo} alt="logo" />
+          <img src={logo} alt="logo" />
         </Link>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
@@ -114,20 +116,26 @@ const App = () => {
               </a>
             </li>
             <li className="nav-item">
-            <Link to={"/addDog"} className="nav-link">
+              <Link to={"/addDog"} className="nav-link">
                 Add Dog!
-            </Link>
+              </Link>
             </li>
             <li className="nav-item">
-            <Link to={"/addDate"} className="nav-link">
+              <Link to={"/addDate"} className="nav-link">
                 Add a Playdate!
-            </Link>
+              </Link>
             </li>
             <li className="nav-item">
-            <Link to={"/getDate"} className="nav-link">
+              <Link to={"/getDate"} className="nav-link">
                 Your Playdate!
-            </Link>
+              </Link>
             </li>
+            <li className="nav-item">
+              <Link to={"/viewAvailableDates"} className="nav-link">
+                Register for Playdate!
+              </Link>
+            </li>
+
           </div>
         ) : (
           <div className="navbar-nav ml-auto">
@@ -148,21 +156,23 @@ const App = () => {
 
       <div className="container mt-3">
         <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/home" element={<Home/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/register" element={<Register/>} />
-          <Route path="/profile" element={<Profile/>} />
-          <Route path="/user" element={<BoardUser/>} />
-          <Route path="/mod" element={<BoardModerator/>} />
-          <Route path="/admin" element={<BoardAdmin/>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/user" element={<BoardUser />} />
+          <Route path="/mod" element={<BoardModerator />} />
+          <Route path="/admin" element={<BoardAdmin />} />
           <Route path="/addDog" element={<Dog />} />
           <Route path="/viewDog/:id" element={<ShowDogDetails />} />
           <Route path='/update-dog/:id' element={<UpdateDogDetails />} />
           <Route path='/addDate' element={<AddDate />} />
-          <Route path='/getDate' element={<GetDate />} />
+          {/* <Route path='/getDate' element={<GetDate />} /> */}
+          <Route path='/getDate' element={<GetDateTest />} />
           <Route path='/viewDate/:id' element={<ViewDate />} />
           <Route path='/update-date/:id' element={<EditDate />} />
+          <Route path='/viewAvailableDates' element={<ViewAvailableDates />} />
         </Routes>
       </div>
     </div>
