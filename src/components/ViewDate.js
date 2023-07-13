@@ -11,7 +11,13 @@ const ViewDate = () =>{
     useEffect(()=>{
         UserService.ViewDate(id).then((res)=>setDate(res.data))
         .catch((err)=>console.log("error form get date details"));
-    },{id})
+    },{id});
+    const removeDate =(id)=>{
+      UserService.DeleteDate(id);
+    }
+    const updateDate = (id) =>{
+      navigate('/update-date/'+id)
+    }
     return(
         <div>
         <table className='table table-hover table-dark'>
@@ -41,9 +47,9 @@ const ViewDate = () =>{
         </tbody>
       </table>
       <div className='dog-actions'>
-    <button className="btn btn-outline-danger btn-lg btn-block" onClick="">Delete</button>
+    <button className="btn btn-outline-danger btn-lg btn-block" onClick={()=>removeDate(id)}>Delete</button>
     
-    <button className='btn btn-outline-info btn-lg btn-block' onClick="">Edit</button>
+    <button className='btn btn-outline-info btn-lg btn-block' onClick={()=>updateDate(id)}>Edit</button>
   </div>
     </div>
     )

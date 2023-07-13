@@ -18,6 +18,7 @@ import UpdateDogDetails from './components/UpdateDogDetails';
 import AddDate from './components/AddDate';
 import GetDate from './components/GetDate';
 import ViewDate from './components/ViewDate'
+import EditDate from './components/EditDate'
 // function App_backUp() {
 //   return (
 //     <div className="App">
@@ -161,6 +162,7 @@ const App = () => {
           <Route path='/addDate' element={<AddDate />} />
           <Route path='/getDate' element={<GetDate />} />
           <Route path='/viewDate/:id' element={<ViewDate />} />
+          <Route path='/update-date/:id' element={<EditDate />} />
         </Routes>
       </div>
     </div>
