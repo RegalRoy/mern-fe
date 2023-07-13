@@ -31,6 +31,14 @@ const getModeratorBoard = () => {
     return axios.get("http://localhost:8080/api/test/getdate/"+id, { headers: authHeader() } )
   }
 
+  const DeleteDate = (id) =>{
+    return axios.delete("http://localhost:8080/api/test/getdate/"+id,{ headers: authHeader() } )
+  }
+
+  const EditDate =(id, dateObj)=>{
+    return axios.put("http://localhost:8080/api/test/getdate/"+id,dateObj, {headers: authHeader() } )
+  }
+
   const UserService = {
     getPublicContent,
     getUserBoard,
@@ -38,7 +46,9 @@ const getModeratorBoard = () => {
     getAdminBoard,
     AddDate,
     GetDate,
-    ViewDate
+    ViewDate,
+    DeleteDate,
+    EditDate
   };
   
   export default UserService;
@@ -46,5 +56,7 @@ const getModeratorBoard = () => {
   // app.post("/api/test/postdate", [authJwt.verifyToken], controller.postDate)
   // app.get("/api/test/getdate", [authJwt.verifyToken], controller.getDate)
   // app.get("/api/test/getdate/:id", [authJwt.verifyToken], controller.getADate)
+  // app.delete("/api/test/getdate/:id", [authJwt.verifyToken], controller.deleteDate)
+  // app.put("/api/test/getdate/:id", [authJwt.verifyToken], controller.updateDate)
 
 
