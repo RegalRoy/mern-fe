@@ -41,7 +41,7 @@ const UpdateDogDetails = () => {
             onChange={onChange}
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="username">Dog Age</label>
           <input
             type="text"
@@ -50,8 +50,8 @@ const UpdateDogDetails = () => {
             value={dog.dogAge}
             onChange={onChange}
           />
-        </div>
-        <div className="form-group">
+        </div> */}
+        {/* <div className="form-group">
           <label htmlFor="username">Breed</label>
           <input
             type="text"
@@ -81,6 +81,66 @@ const UpdateDogDetails = () => {
             onChange={onChange}
           />
 
+        </div> */}
+
+
+        <div className="form-group">
+          <label htmlFor="username">Dog Age</label>
+          <select name="dogAge" id="pet-select" onChange={onChange} value={dog.dogAge}>
+            <option value="">--Please choose an option--</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+
+
+
+        <div className="form-group">
+          <label htmlFor="username">Breed</label>
+          <select name="dogBreed" id="pet-select" onChange={onChange} value={dog.dogBreed}>
+            <option value="">--Please choose an option--</option>
+            <option value="Labrador">Labrador</option>
+            <option value="French Bulldog">French Bulldog</option>
+            <option value="English Bulldog">English Bulldog</option>
+            <option value="Golden Retriever">Golden Retriever</option>
+            <option value="Beagle">Beagle</option>
+            <option value="German Shepherd">German Shepherd</option>
+          </select>
+        </div>
+
+
+
+        <div className="form-group">
+          <label htmlFor="username">Size</label>
+          <select name="dogSize" id="pet-select" onChange={onChange} value={dog.dogSize}>
+            <option value="">--Please choose an option--</option>
+            <option value="Small" >Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+            <option value="Giant">Giant</option>
+
+          </select>
+        </div>
+
+
+        <div className="form-group">
+          <label htmlFor="username">Temperament</label>
+          <select name="dogTemperament" id="pet-select" onChange={onChange} value={dog.dogTemperament}>
+            <option value="">--Please choose an option--</option>
+            <option value="Assertive ">Assertive </option>
+            <option value="aggressive">aggressive</option>
+            <option value="neutral">neutral</option>
+            <option value="passive">passive</option>
+
+          </select>
         </div>
 
         <input
