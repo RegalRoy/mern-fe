@@ -15,7 +15,7 @@ const EditDate = () => {
         ownerId: currentUser.id
     })
 
-    useEffect(()=>{UserService.ViewDate(id).then((res)=>setDate(res.data))},{id})
+    useEffect(() => { UserService.ViewDate(id).then((res) => setDate(res.data)) }, { id })
 
     const onChange = (e) => {
         const { name, value } = e.target;
@@ -38,13 +38,15 @@ const EditDate = () => {
             <form onSubmit={handleChangeDate}>
                 <div className="form-group">
                     <label htmlFor="username">Date and Time</label>
-                    <input
+                    {/* <input
                         type="text"
                         className="form-control"
                         name="dateAndTime"
                         value={date.dateAndTime}
                         onChange={onChange}
-                    />
+                    /> */}
+
+                    <input type="datetime-local" id="dateAndTime" name="dateAndTime"  value={date.dateAndTime} onChange={onChange} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="username">participants</label>
@@ -76,7 +78,7 @@ const EditDate = () => {
                         onChange={onChange}
                     />
                 </div>
-               
+
 
                 <input
                     type='submit'

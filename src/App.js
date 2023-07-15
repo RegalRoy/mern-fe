@@ -16,9 +16,11 @@ import Dog from "./components/Dog"
 import ShowDogDetails from './components/ShowDogDetails';
 import UpdateDogDetails from './components/UpdateDogDetails';
 import AddDate from './components/AddDate';
+import AddDate2 from './components/AddDate2'
 import GetDate from './components/GetDate';
 import ViewDate from './components/ViewDate'
 import EditDate from './components/EditDate'
+import EdiDate2 from './components/EditDate2'
 import GetDateTest from './components/GetDateTest';
 import ViewAvailableDates from './components/ViewAvailableDates'
 // function App_backUp() {
@@ -167,11 +169,11 @@ const App = () => {
           <Route path="/addDog" element={<Dog />} />
           <Route path="/viewDog/:id" element={<ShowDogDetails />} />
           <Route path='/update-dog/:id' element={<UpdateDogDetails />} />
-          <Route path='/addDate' element={<AddDate />} />
+          <Route path='/addDate' element={<AddDate2 />} />
           {/* <Route path='/getDate' element={<GetDate />} /> */}
           <Route path='/getDate' element={<GetDateTest />} />
           <Route path='/viewDate/:id' element={<ViewDate />} />
-          <Route path='/update-date/:id' element={<EditDate />} />
+          <Route path='/update-date/:id' element={<EdiDate2 />} />
           <Route path='/viewAvailableDates' element={<ViewAvailableDates />} />
         </Routes>
       </div>
