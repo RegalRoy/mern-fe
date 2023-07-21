@@ -4,28 +4,15 @@ import UserService from "../services/user.service";
 import DateCard from "./DateCard";
 import AuthService from "../services/auth.service";
 import DogService from "../services/dog.service";
+import Calendar from './CalView';
+
 
 const GetDate = () => {
     const [content, setContent] = useState([]);
     const [matchedDates, setMatchDates] = useState([])
     const currentUser = AuthService.getCurrentUser();
     useEffect(() => {
-        // UserService.GetDate().then(
-        //     (response) => {
-        //         setContent(response.data);
-        //         // console.log(content)
-        //     },
-        //     (error) => {
-        //         const _content =
-        //             (error.response &&
-        //                 error.response.data &&
-        //                 error.response.data.message) ||
-        //             error.message ||
-        //             error.toString();
 
-        //         setContent(_content);
-        //     }
-        // );
         getMatchDate()
     }, [])
 
@@ -63,24 +50,25 @@ const GetDate = () => {
             allDogs = r.data;
             dogsOfOwners = allDogs.filter(dog => dog.ownerId == currentUser.id)
 
-            console.log("no of dogs of the owner " + dogsOfOwners.length)
-            dogsOfOwners.map(dog=>console.log(dog))
+            // console.log("no of dogs of the owner " + dogsOfOwners.length)
+            // dogsOfOwners.map(dog => console.log(dog))
             dogsOfOwners.map(dog => {
                 UserService.GetDate().then((re) => {
                     let allDates = [];
+                    let datematchedArr = [];
                     allDates = re.data;
-                    console.log("Len of date array is "+allDates.length)
-                    allDates.map(date=>console.log(date));
+                    // console.log("Len of date array is " + allDates.length)
+                    // allDates.map(date => console.log(date));
                     allDates.map(date => {
                         if (date.dogRestrictions.includes(dog.dogBreed) && date.dogRestrictions.includes(dog.dogSize) && date.dogRestrictions.includes(dog.dogTemperament)) {
-                            let datematchedArr=[];
+
                             datematchedArr.push(date);
                             setMatchDates(datematchedArr);
-                            console.log("date to be se is " + date.dateAndTime)
+                            // console.log("date to be se is " + date.dateAndTime)
                             return;
                         } else {
                             setContent([])
-                            console.log("no dates match")
+                            // console.log("no dates match")
                         }
                     })
                 })
@@ -95,8 +83,9 @@ const GetDate = () => {
     return (
         <div className="container">
             <header className="jumbotron">
-                <h3>Your date List</h3>
-                <div className='list'>{dateList}</div>
+                <Calendar matchedDates={matchedDates} month={7} year={2023} />
+                
+                {/* <div className='list'>{dateList}</div> */}
 
             </header>
         </div>
