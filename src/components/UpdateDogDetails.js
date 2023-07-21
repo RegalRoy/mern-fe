@@ -30,6 +30,7 @@ const UpdateDogDetails = () => {
   }
   return (
     <div>
+      <h1>Updating Details of {dog.dogName}</h1>
       <form onSubmit={updateDog}>
         <div className="form-group">
           <label htmlFor="username">Dog Name</label>

@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 const DogCard =(props)=>{
     const dog = props.dog;
     return (
-        <div className='card-container'>
+        <div className='card'>
           
           <img
             src='https://images.unsplash.com/photo-1495446815901-a7297e633e8d'
@@ -14,10 +14,10 @@ const DogCard =(props)=>{
           />
           <div className='desc'>
             <h2>
-              <Link to={`/viewDog/${dog._id}`}>{dog.dogName}</Link>
+              <Link to={`/viewDog/${dog._id}`}>NAME: {dog.dogName}</Link>
             </h2>
-            <h3>{dog.dogBreed}</h3>
-            <p>{dog.dogBreed}</p>
+            <h3>Breed: {dog.dogBreed}</h3>
+            <p>Size: {dog.dogSize}</p>
           </div>
         </div>
       );

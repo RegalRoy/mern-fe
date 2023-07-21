@@ -35,6 +35,7 @@ const EditDate = () => {
 
     return (
         <div>
+           <h1>Editing Date Details</h1>
             <form onSubmit={handleChangeDate}>
                 <div className="form-group">
                     <label htmlFor="username">Date and Time</label>

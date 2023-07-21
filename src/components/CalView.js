@@ -154,13 +154,13 @@ const Calendar = ({ matchedDates, month, year }) => {
             if (_displayMatchedDates[0].participants.includes(currentUser.username)) {
               weekDays.push(
                 <td key={j} className='matchedAndReg' onClick={(event) => handleDayClick2(event, day)}>
-                  {day}
+                  {day} @ {_displayMatchedDates[0].location}
                 </td>
               );
             } else {
               weekDays.push(
                 <td key={j} className='matched' onClick={(event) => handleDayClick2(event, day)}>
-                  {day}
+                  {day} @ {_displayMatchedDates[0].location}
                 </td>
               );
             }
@@ -217,7 +217,7 @@ const Calendar = ({ matchedDates, month, year }) => {
       <h2>
         {getMonthName(currentMonth)} {currentYear}
       </h2>
-      <table>
+      <table className='table'>
         <thead>
           <tr>
             <th>Sun</th>
@@ -232,14 +232,16 @@ const Calendar = ({ matchedDates, month, year }) => {
 
         <tbody>{renderCalendarDays()}</tbody>
       </table>
-      <button onClick={movePrev}>Prev Month</button>
-      <button onClick={moveNext}>Next Month</button>
+      <button className='btn btn-primary' onClick={movePrev}>Prev Month</button>
+      <button className='btn btn-primary' onClick={moveNext}>Next Month</button>
       {/* {selectedDate && <p>Selected Date: {selectedDate.toLocaleDateString()}</p>} */}
       <br />
       <div>
         <h4>Locations of available dates: </h4>
         <ul>
-          {__displayMatchedDates.map(d => <li onClick={(event) => handleLocClick(event)}>{d.location}</li>)}
+          {__displayMatchedDates.map(d => <span class="badge rounded-pill text-bg-primary" onClick={(event) => handleLocClick(event)}>
+            {d.location}</span>)}
+          
         </ul>
 
       </div>

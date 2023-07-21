@@ -70,10 +70,43 @@ label {
   border-radius: 50%;
 }
 
+.table td {
+  border: 2px solid #000; /* Change the color and style as per your design */
+  /* You can also add padding, margin, or other styles to customize the look */
+  background-color: lightgrey;
+}
+
 td.matched{
   background-color: orange;
 }
 
 td.matchedAndReg{
   background-color: green;
+}
+
+.btn-primary {
+  /* Adjust the margin value to add the desired space between buttons */
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.btn-danger {
+  /* Adjust the margin value to add the desired space between buttons */
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.table {
+  width: 100%; /* Set the desired width for the table */
+  table-layout: fixed; /* Use fixed table layout */
+}
+
+
+
+/* Optional: You can also style the table headers if needed */
+.table th {
+  /* Add your styles for table headers here */
+  border: 2px solid #000; 
+  background-color: #61dafb;
 }

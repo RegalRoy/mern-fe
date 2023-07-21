@@ -20,12 +20,12 @@ import AddDate2 from './components/AddDate2'
 import GetDate from './components/GetDate';
 import ViewDate from './components/ViewDate'
 import EditDate from './components/EditDate'
-import EdiDate2 from './components/EditDate2'
+import EditDate2 from './components/EditDate2'
 import GetDateTest from './components/GetDateTest';
 import ViewAvailableDates from './components/ViewAvailableDates'
 import ViewAvailableDates2 from './components/ViewAvailableDates2'
-import { registerLicense } from '@syncfusion/ej2-base';
-registerLicense('ORg4AjUWIQA/Gnt2VVhhQlFaclhJWHxMYVF2R2FJeFRycF9FaEwgOX1dQl9hSXpTcEVmWn9feHVRQWY=');
+// import { registerLicense } from '@syncfusion/ej2-base';
+// registerLicense('ORg4AjUWIQA/Gnt2VVhhQlFaclhJWHxMYVF2R2FJeFRycF9FaEwgOX1dQl9hSXpTcEVmWn9feHVRQWY=');
 // function App_backUp() {
 //   return (
 //     <div className="App">
@@ -176,7 +176,7 @@ const App = () => {
           {/* <Route path='/getDate' element={<GetDate />} /> */}
           <Route path='/getDate' element={<GetDateTest />} />
           <Route path='/viewDate/:id' element={<ViewDate />} />
-          <Route path='/update-date/:id' element={<EdiDate2 />} />
+          <Route path='/update-date/:id' element={<EditDate2 />} />
           <Route path='/viewAvailableDates' element={<ViewAvailableDates />} />
         </Routes>
       </div>
