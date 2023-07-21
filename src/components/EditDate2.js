@@ -60,6 +60,7 @@ const EditDate = () => {
 
     return (
         <div>
+            <h1>Editing Date Details</h1>
             <form >
                 <div className="form-group">
                     <label htmlFor="dateAndTime">dateAndTime</label>
@@ -130,7 +131,7 @@ const EditDate = () => {
                         className="form-control"
                         name="location"
                         id="location"
-                        value={date.location}
+                        // value={date.location}
 
                     />
                 </div>
@@ -139,7 +140,7 @@ const EditDate = () => {
                     type='submit'
                     className='btn btn-outline-warning btn-block mt-4'
                 /> */}
-                <button type="button" onClick={(e) => handleCreateDate(e)}>SEND</button>
+                <button className='btn btn-primary' type="button" onClick={(e) => handleCreateDate(e)}>SEND</button>
 
             </form>
         </div>

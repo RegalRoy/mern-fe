@@ -123,7 +123,7 @@ const AddDate = () => {
                     type='submit'
                     className='btn btn-outline-warning btn-block mt-4'
                 /> */}
-                <button type="button" onClick={(e) => handleCreateDate(e)}>SEND</button>
+                <button type="button" className='btn btn-primary' onClick={(e) => handleCreateDate(e)}>SEND</button>
 
             </form>
         </div>

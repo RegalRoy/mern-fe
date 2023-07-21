@@ -20,7 +20,7 @@ const ViewDate = () => {
   }
   return (
     <div>
-      <table className='table table-hover table-dark'>
+      <table className='table'>
         <tbody>
           <tr>
             <th scope='row'>1</th>
@@ -72,9 +72,9 @@ const ViewDate = () => {
         </tbody>
       </table>
       <div className='dog-actions'>
-        <button className="btn btn-outline-danger btn-lg btn-block" onClick={() => removeDate(id)}>Delete</button>
+        <button className="btn btn-danger" onClick={() => removeDate(id)}>Delete</button>
 
-        <button className='btn btn-outline-info btn-lg btn-block' onClick={() => updateDate(id)}>Edit</button>
+        <button className='btn btn-primary' onClick={() => updateDate(id)}>Edit</button>
       </div>
     </div>
   )

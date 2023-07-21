@@ -20,7 +20,7 @@ const ShowDogDetails = () =>{
     }
     return(
         <div>
-            <table className='table table-hover table-dark'>
+            <table className='table'>
             <tbody>
               <tr>
                 <th scope='row'>1</th>
@@ -51,9 +51,9 @@ const ShowDogDetails = () =>{
             </tbody>
           </table>
           <div className='dog-actions'>
-        <button className="btn btn-outline-danger btn-lg btn-block" onClick={()=>{onDelete(dog._id)}}>Delete</button>
+        <button className="btn btn-danger" onClick={()=>{onDelete(dog._id)}}>Delete</button>
         
-        <button className='btn btn-outline-info btn-lg btn-block' onClick={()=>{onUpdate(dog._id)}}>Edit</button>
+        <button className='btn btn-primary' onClick={()=>{onUpdate(dog._id)}}>Edit</button>
       </div>
         </div>
     )
