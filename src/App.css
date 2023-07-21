@@ -69,3 +69,11 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
+
+td.matched{
+  background-color: orange;
+}
+
+td.matchedAndReg{
+  background-color: green;
+}
