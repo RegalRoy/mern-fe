@@ -71,7 +71,7 @@ label {
 }
 
 .table td {
-  border: 2px solid #000; /* Change the color and style as per your design */
+   /* Change the color and style as per your design */
   /* You can also add padding, margin, or other styles to customize the look */
   background-color: lightgrey;
 }
@@ -114,11 +114,19 @@ td.matchedAndReg{
 
 
 .MapSample {
-  height: 100vh;
+  height: 40vh;
   width: 100%;
 }
 
 .map-container {
   height: 100%;
   width: 100%;
+}
+
+
+
+.calViewDates{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 }

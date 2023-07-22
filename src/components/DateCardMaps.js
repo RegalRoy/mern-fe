@@ -45,7 +45,7 @@ const DateCard = (props) => {
         {!isLoaded ? (
           <h1>Loading...</h1>
         ) : (
-          <GoogleMap mapContainerClassName="map-container" center={center_} zoom={15}>
+          <GoogleMap mapContainerClassName="map-container" center={center_} zoom={12}>
           
           {center_ && <Marker position={{ lat:center_.lat , lng: center_.lng }} />}
 
@@ -61,7 +61,7 @@ const DateCard = (props) => {
   }
 
   return (
-    <div className='card' >
+    <div className='card-container' >
 
     {/* <img
           src='https://images.unsplash.com/photo-1495446815901-a7297e633e8d'
@@ -76,9 +76,9 @@ const DateCard = (props) => {
         {/* <button onClick={()=>props.UnregisterToPlaydate(dog._id)}>UnRegister</button> */}
         <a href="#" className="btn btn-danger" onClick={() => props.UnregisterToPlaydate(dog._id)}>UnRegister</a>
       </div>
-      <h2>
+      <h5>
         <Link to={`/viewDate/${dog._id}`}>{dog._id}</Link>
-      </h2>
+      </h5>
       <h4>Date: </h4>
       <p>{matchedMo + " / " + dayMatched}</p>
       <h4>Location:</h4>

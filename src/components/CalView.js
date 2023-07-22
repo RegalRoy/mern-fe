@@ -213,6 +213,8 @@ const Calendar = ({ matchedDates, month, year }) => {
     })
   }
 
+
+
   return (
     <div>
       <h2>
@@ -261,7 +263,7 @@ const Calendar = ({ matchedDates, month, year }) => {
         : <h3>NO MATCH</h3>}
       </div> */}
 
-      <div>
+      <div className='calViewDates'>
         {displayMatchedDates.length === 0 && location.length === 0
           ? __displayMatchedDates.map((dog, k) => (
             <DateCardMaps
