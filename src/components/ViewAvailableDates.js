@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import UserService from "../services/user.service";
 import DateCard from "./DateCard";
+import DateCardMaps from './DateCardMaps'
 import AuthService from "../services/auth.service";
 import DogService from "../services/dog.service";
 import Calendar from './CalView';
@@ -78,7 +79,7 @@ const GetDate = () => {
     }
 
 
-    const dateList = matchedDates.map((dog, k) => <DateCard dog={dog} key={k} registerToPlaydate={registerToPlaydate} UnregisterToPlaydate={UnregisterToPlaydate} participants={dog.participants} />)
+    const dateList = matchedDates.map((dog, k) => <DateCardMaps dog={dog} key={k} registerToPlaydate={registerToPlaydate} UnregisterToPlaydate={UnregisterToPlaydate} participants={dog.participants} />)
 
     return (
         <div className="container">

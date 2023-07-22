@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DateCard from "./DateCard";
+import DateCardMaps from './DateCardMaps'
 import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
 
@@ -263,7 +264,7 @@ const Calendar = ({ matchedDates, month, year }) => {
       <div>
         {displayMatchedDates.length === 0 && location.length === 0
           ? __displayMatchedDates.map((dog, k) => (
-            <DateCard
+            <DateCardMaps
               dog={dog}
               key={k}
               registerToPlaydate={registerToPlaydate}
@@ -273,7 +274,7 @@ const Calendar = ({ matchedDates, month, year }) => {
           ))
           : !(displayMatchedDates.length === 0) && location.length === 0
             ? displayMatchedDates.map((dog, k) => (
-              <DateCard
+              <DateCardMaps
                 dog={dog}
                 key={k}
                 registerToPlaydate={registerToPlaydate}
@@ -283,7 +284,7 @@ const Calendar = ({ matchedDates, month, year }) => {
             ))
             : displayMatchedDates.length === 0 && !(location.length === 0)
               ? location.map((dog, k) => (
-                <DateCard
+                <DateCardMaps
                   dog={dog}
                   key={k}
                   registerToPlaydate={registerToPlaydate}

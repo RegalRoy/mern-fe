@@ -50,6 +50,7 @@ import DateCard from "./DateCard";
 import AuthService from "../services/auth.service";
 import Calendar from "react-calendar"; // Import the calendar library
 import "react-calendar/dist/Calendar.css"; // Import the calendar styles
+import DateCardMaps from './DateCardMaps'
 
 const GetDate = () => {
   const [content, setContent] = useState([]);
@@ -83,7 +84,7 @@ const GetDate = () => {
   );
 
   const dateList = filteredDates.map((dog, k) => (
-    <DateCard dog={dog} key={k} />
+    <DateCardMaps dog={dog} key={k} />
   ));
 
   return (
