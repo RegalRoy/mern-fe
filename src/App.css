@@ -130,3 +130,30 @@ td.matchedAndReg{
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
 }
+
+.badge-secondary{
+  background-color: orange;
+  font-weight: bold;
+  color:black;
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 10px; 
+  width: 100%;
+  height: 100%;  
+
+}
+
+.badge-primary{
+  background-color: green;
+  font-weight: bold;
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 10px; 
+  width: 100%;
+  height: 100%;  
+}
+
+.day{
+  font-weight: bold;
+}
+
