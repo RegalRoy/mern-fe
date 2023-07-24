@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import React, { useState, useEffect } from "react";
+import AuthService from "../services/auth.service";
 const libraries = ["places"];
+
+
 
 const DateCard = (props) => {
   const dog = props.dog;
@@ -10,6 +13,7 @@ const DateCard = (props) => {
   const matchedMo = newDate.getMonth() + 1;
   const dayMatched = newDate.getDate();
   const [locationCenter, setLocationCenter] = useState(null);
+  const currentUser = AuthService.getCurrentUser();
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyCeT8OkreuqLK67q6U1m5FEcHUZl2I3bU8", // Replace with your actual API key
@@ -70,11 +74,11 @@ const DateCard = (props) => {
         /> */}
     <div className='desc'>
       <div className="buttonContainer">
-
+    {dog.participants.includes(currentUser.username)?<a href="#" className="btn btn-danger" onClick={() => props.UnregisterToPlaydate(dog._id)}>UnRegister</a> : <a href="#" className="btn btn-primary" onClick={() => props.registerToPlaydate(dog._id)}>Register</a>}
         {/* <button onClick={()=>props.registerToPlaydate(dog._id)}>Register</button> */}
-        <a href="#" className="btn btn-primary" onClick={() => props.registerToPlaydate(dog._id)}>Register</a>
+        {/* <a href="#" className="btn btn-primary" onClick={() => props.registerToPlaydate(dog._id)}>Register</a> */}
         {/* <button onClick={()=>props.UnregisterToPlaydate(dog._id)}>UnRegister</button> */}
-        <a href="#" className="btn btn-danger" onClick={() => props.UnregisterToPlaydate(dog._id)}>UnRegister</a>
+        {/* <a href="#" className="btn btn-danger" onClick={() => props.UnregisterToPlaydate(dog._id)}>UnRegister</a> */}
       </div>
       <h5>
         <Link to={`/viewDate/${dog._id}`}>{dog._id}</Link>

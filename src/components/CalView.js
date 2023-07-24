@@ -66,6 +66,10 @@ const Calendar = ({ matchedDates, month, year }) => {
 
   const handleDayClick2 = (event, day) => {
     const clickedDay = parseInt(event.target.innerText, 10); // Convert to a number
+    // const clickedDay = event.target.closest('td').innerText.trim();
+    // const clickedDay = document.querySelector('td').innerText.trim();
+
+
     console.log('Clicked Day:', clickedDay);
     console.log(currentMonth)
     console.log(currentYear)
@@ -85,6 +89,15 @@ const Calendar = ({ matchedDates, month, year }) => {
     setDisplayDates(newArr)
     setLocation([])
   };
+
+  const handlePillClicked = (event) => {
+    const clickedId = event.target.id;
+    const newArr = matchedDates.filter(d => d._id === clickedId)
+    console.log(newArr)
+    setDisplayDates(newArr);
+    setLocation([])
+    event.stopPropagation()
+  }
 
   const handleLocClick = (event, day) => {
     const clickedLoc = event.target.innerText;
@@ -152,19 +165,38 @@ const Calendar = ({ matchedDates, month, year }) => {
             __displayMatchedDates.push(..._displayMatchedDates)
 
 
-            if (_displayMatchedDates[0].participants.includes(currentUser.username)) {
-              weekDays.push(
-                <td key={j} className='matchedAndReg' onClick={(event) => handleDayClick2(event, day)}>
-                  {day} @ {_displayMatchedDates[0].location}
-                </td>
-              );
-            } else {
-              weekDays.push(
-                <td key={j} className='matched' onClick={(event) => handleDayClick2(event, day)}>
-                  {day} @ {_displayMatchedDates[0].location}
-                </td>
-              );
-            }
+            // if (_displayMatchedDates[0].participants.includes(currentUser.username)) {
+            //   weekDays.push(
+            //     <td key={j} className='matchedAndReg' onClick={(event) => handleDayClick2(event, day)}>
+            //       {day} @ {_displayMatchedDates[0].location}
+            //     </td>
+            //   );
+            // } else {
+            //   weekDays.push(
+            //     <td key={j} className='matched' onClick={(event) => handleDayClick2(event, day)}>
+            //       {day} @ {_displayMatchedDates[0].location}
+            //     </td>
+            //   );
+            // }
+
+            weekDays.push(
+              <td key={j} className='day' onClick={(event) => handleDayClick2(event, day)}>
+                {day}
+
+                {/* {_displayMatchedDates.map(date => <tr><span className="badge badge-pill badge-primary" id={date._id} onClick={(event) => handlePillClicked(event)}>{date.location}</span></tr>)} */}
+
+                {_displayMatchedDates.map(date => {
+
+                  if (date.participants.includes(currentUser.username)) {
+                   return <tr><span className="badge badge-pill badge-primary" id={date._id} onClick={(event) => handlePillClicked(event)}>{date.location}</span></tr>
+                  } else {
+                   return <tr><span className="badge badge-pill badge-secondary" id={date._id} onClick={(event) => handlePillClicked(event)}>{date.location}</span></tr>
+                  }
+
+                })}
+
+              </td>
+            );
 
 
           } else {
@@ -244,7 +276,7 @@ const Calendar = ({ matchedDates, month, year }) => {
         <ul>
           {__displayMatchedDates.map(d => <span class="badge rounded-pill text-bg-primary" onClick={(event) => handleLocClick(event)}>
             {d.location}</span>)}
-          
+
         </ul>
 
       </div>

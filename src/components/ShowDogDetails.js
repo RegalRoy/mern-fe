@@ -23,27 +23,27 @@ const ShowDogDetails = () =>{
             <table className='table'>
             <tbody>
               <tr>
-                <th scope='row'>1</th>
+                {/* <th scope='row'>1</th> */}
                 <td>Name</td>
                 <td>{dog.dogName}</td>
               </tr>
               <tr>
-                <th scope='row'>2</th>
+                {/* <th scope='row'>2</th> */}
                 <td>Age</td>
                 <td>{dog.dogAge}</td>
               </tr>
               <tr>
-                <th scope='row'>3</th>
+                {/* <th scope='row'>3</th> */}
                 <td>Breed</td>
                 <td>{dog.dogBreed}</td>
               </tr>
               <tr>
-                <th scope='row'>4</th>
+                {/* <th scope='row'>4</th> */}
                 <td>Size</td>
                 <td>{dog.dogSize}</td>
               </tr>
               <tr>
-                <th scope='row'>5</th>
+                {/* <th scope='row'>5</th> */}
                 <td>Temperament</td>
                 <td>{dog.dogTemperament}</td>
               </tr>
