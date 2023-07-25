@@ -19,6 +19,7 @@ import AddDate from './components/AddDate';
 import AddDate2 from './components/AddDate2'
 import GetDate from './components/GetDate';
 import ViewDate from './components/ViewDate'
+import ViewDateCommentSec from './components/ViewDateCommentSec'
 import EditDate from './components/EditDate'
 import EditDate2 from './components/EditDate2'
 import GetDateTest from './components/GetDateTest';
@@ -175,7 +176,7 @@ const App = () => {
           <Route path='/addDate' element={<AddDate2 />} />
           {/* <Route path='/getDate' element={<GetDate />} /> */}
           <Route path='/getDate' element={<GetDateTest />} />
-          <Route path='/viewDate/:id' element={<ViewDate />} />
+          <Route path='/viewDate/:id' element={<ViewDateCommentSec />} />
           <Route path='/update-date/:id' element={<EditDate2 />} />
           <Route path='/viewAvailableDates' element={<ViewAvailableDates />} />
         </Routes>

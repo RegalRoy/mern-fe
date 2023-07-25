@@ -31,7 +31,7 @@ const BoardUser = () => {
   const dogList = dogListForOwners.map((dog ,k) => <DogCard dog={dog} key={k}/>)
   
   return (
-    <div className="container">
+    <div className="shadow-lg p-3 mb-5 bg-white rounded">
       <header className="jumbotron">
         <h3>Your Dog List</h3>
         <div className='list'>{dogList}</div>

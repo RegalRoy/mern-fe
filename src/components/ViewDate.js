@@ -106,6 +106,11 @@ const ViewDate = () => {
           )}
         </div>
       </div>
+
+
+
+
+      
       {date.ownerId === currentUser.id ?
         <div className='dog-actions'>
           <button className="btn btn-danger" onClick={() => removeDate(id)}>Delete</button>
@@ -119,9 +124,10 @@ const ViewDate = () => {
           <div>
 
             <form>
-              <input name='dateComment' id='dateComment'></input>
-              <button className='btn btn-primary' type="button" onClick={(e) => handleComment(e)}>POST Comment</button>
+              <textarea name='dateComment' id='dateComment' rows="7" cols="100"></textarea>
+              
             </form>
+            <button className='btn btn-primary' type="button" onClick={(e) => handleComment(e)}>POST Comment</button>
 
           </div> : <div>You need to be registered to   comment on this date </div> : <div>  no comment outer </div>
       }
