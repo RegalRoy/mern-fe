@@ -16,37 +16,30 @@ const Dog = () => {
         dogBreed: '',
         dogSize: '',
         dogTemperament: "",
-        ownerId: currentUser.id
+        ownerId: currentUser.id,
+        photo: ""
     })
+    const [image, setImage] = useState("")
     const onChange = (e) => {
+
         setDog({ ...dog, [e.target.name]: e.target.value })
     }
+    const handleFileChange = (event) => {
+        setDog({ ...dog, photo: event.target.files[0] });
+    }
 
-
-    //     useEffect(()=>{
-    //     DogService.AddDogTest().then(
-    //         (r)=>{setDog(r.data)}
-    //     )
-    // })
-
-
-
-
-    const handleCreateDog_ = (e) => {
-        e.preventDefault();
-
-        axios.post("http://localhost:8080/api/test/dog", dog, { headers: authHeader() })
-            .then((res) => {
-                setDog({
-                    dogName: '',
-                    dogAge: '',
-                    dogBreed: '',
-                    dogSize: '',
-                    dogTemperament: '',
-                });
-                // navigate('/')
-
-            })
+    const handleFileChange2 = (event) => {
+        var reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = () =>{
+            // console.log(reader.result); //base 64 string
+            setImage(reader.result)
+            setDog({ ...dog, photo: reader.result });
+        }
+        reader.onerror = error =>{
+            console.log("error" + error)
+        }
+        
     }
 
     const handleCreateDog = (e) => {
@@ -54,21 +47,54 @@ const Dog = () => {
         console.log(dog)
         DogService.AddDog(dog)
             .then((res) => {
+                console.log("checking dog created..." + dog);
                 setDog({
                     dogName: '',
                     dogAge: '',
                     dogBreed: '',
                     dogSize: '',
                     dogTemperament: "",
+                    photo: ""
                     // ownerId:""
                 });
+
                 navigate('/user')
             })
     }
 
+    const handleCreateDog_photo = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('dogName', dog.dogName);
+        formData.append('dogAge', dog.dogAge);
+        formData.append('dogBreed', dog.dogBreed);
+        formData.append('dogSize', dog.dogSize);
+        formData.append('dogTemperament', dog.dogTemperament);
+        formData.append('ownerId', dog.ownerId);
+        formData.append('photo', dog.photo);
+        console.log(formData)
+        DogService.AddDog(formData)
+            .then((res) => {
+                console.log("checking dog created..." + dog);
+                setDog({
+                    dogName: '',
+                    dogAge: '',
+                    dogBreed: '',
+                    dogSize: '',
+                    dogTemperament: "",
+                    ownerId: currentUser.id,
+                    photo: ""
+                    // ownerId:""
+                });
+
+                navigate('/user')
+            })
+    }
+
+
     return (
         <div>
-            <form onSubmit={handleCreateDog}>
+            <form onSubmit={handleCreateDog_photo} encType="multipart/form-data">
                 <div className="form-group">
                     <label htmlFor="username">Dog Name</label>
                     <input
@@ -78,15 +104,7 @@ const Dog = () => {
                         onChange={onChange}
                     />
                 </div>
-                {/* <div className="form-group">
-                    <label htmlFor="username">Dog Age</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        name="dogAge"
-                        onChange={onChange}
-                    />
-                </div> */}
+
 
                 <div className="form-group">
                     <label htmlFor="username">Dog Age</label>
@@ -105,15 +123,7 @@ const Dog = () => {
                     </select>
                 </div>
 
-                {/* <div className="form-group">
-            <label htmlFor="username">Breed</label>
-            <input
-              type="text"
-              className="form-control"
-              name="dogBreed"
-              onChange={onChange}
-            />
-            </div> */}
+
 
                 <div className="form-group">
                     <label htmlFor="username">Breed</label>
@@ -128,15 +138,7 @@ const Dog = () => {
                     </select>
                 </div>
 
-                {/* <div className="form-group">
-                    <label htmlFor="username">Size</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        name="dogSize"
-                        onChange={onChange}
-                    />
-                </div> */}
+
 
                 <div className="form-group">
                     <label htmlFor="username">Size</label>
@@ -150,16 +152,7 @@ const Dog = () => {
                     </select>
                 </div>
 
-                {/* <div className="form-group">
-                    <label htmlFor="username">Temperament</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        name="dogTemperament"
-                        onChange={onChange}
-                    />
 
-                </div> */}
 
                 <div className="form-group">
                     <label htmlFor="username">Temperament</label>
@@ -172,7 +165,14 @@ const Dog = () => {
 
                     </select>
                 </div>
+                <div className="form-group">
+                    <input type="file" name="photo" onChange={handleFileChange} />
+                </div>
 
+                <div>
+                    {image==""||image==null?"":<img width={100} height={100} src={image}></img> }
+                    
+                </div>
 
                 <input
                     type='submit'

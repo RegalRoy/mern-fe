@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
+
+
 // import '../App.css';
 
 const DogCard =(props)=>{
-    const dog = props.dog;
+  const [photoUrl, setPhotoUrl] = useState("");
+  const dog = props.dog;
+  const backendBaseUrl = "http://localhost:8080/uploads/"; // Replace with your actual backend URL
+  useEffect(()=>{
+    const filePath = dog.photo;
+    const filename = filePath.split('\\').pop();
+    setPhotoUrl(backendBaseUrl+filename);
+    // console.log("poto is .. ")
+    // console.log(dog.photo)
+    // photoUrl && console.log(photoUrl)
+    // console.log(dog)
+  }, [dog.photo])
+  
+
     return (
         <div className='card'>
           
-          <img
-            src='https://images.unsplash.com/photo-1495446815901-a7297e633e8d'
-            alt='Books'
-            height={200}
-          />
+          {photoUrl && <img src={photoUrl} alt="Dog Photo" />}
+          {/* <img src='http://localhost:8080/uploads/dog.png' ></img> */}
+
           <div className='desc'>
             <h2>
               <Link to={`/viewDog/${dog._id}`}>NAME: {dog.dogName}</Link>
