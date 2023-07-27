@@ -7,6 +7,7 @@ import DogCard from "./DogCard";
 const BoardUser = () => {
   const [content, setContent] = useState([]);
   const currentUser = AuthService.getCurrentUser();
+  const [photoUrl, setPhotoUrl] = useState("");
 
   useEffect(() => {
     UserService.getUserBoard().then(
