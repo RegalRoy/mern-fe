@@ -23,12 +23,29 @@ const AddDog = (dogObj) =>{
     return axios.put(API_URL + "/" +id, dogObj, {headers:authHeader()} )
  }
 
+ const updateDogPicture = (id, file) =>{
+   try {
+      //initialize a formData section for the API call
+      const formData = new FormData();
+      //append the image
+      formData.append("file", file);
+
+      const response = axios.put(
+        API_URL + "/" + id, formData, {headers:authHeader()} );
+
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to update user profile image");
+    }
+}
 
 const DogService = {
     AddDogTest,
     AddDog,
     getDog,
     deleteDog,
-    updateDog
+    updateDog,
+    updateDogPicture
 }
 export default DogService;
