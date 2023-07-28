@@ -8,13 +8,16 @@ import DogService from "../services/dog.service";
 import Calendar from './CalView';
 
 
-const GetDate = () => {
+const GetDate_ = (props) => {
     const [content, setContent] = useState([]);
     const [matchedDates, setMatchDates] = useState([])
     const currentUser = AuthService.getCurrentUser();
     useEffect(() => {
-
-        getMatchDate()
+        
+            getMatchDate()
+       
+       
+        
     }, [])
 
     const registerToPlaydate = (id) => {
@@ -61,7 +64,7 @@ const GetDate = () => {
                     // console.log("Len of date array is " + allDates.length)
                     // allDates.map(date => console.log(date));
                     allDates.map(date => {
-                        if (date.dogRestrictions.includes(dog.dogBreed) && date.dogRestrictions.includes(dog.dogSize) && date.dogRestrictions.includes(dog.dogTemperament)) {
+                        if ((date.dogRestrictions.includes(dog.dogBreed) && date.dogRestrictions.includes(dog.dogSize) && date.dogRestrictions.includes(dog.dogTemperament)) || date.ownerId===currentUser.id) {
 
                             datematchedArr.push(date);
                             setMatchDates(datematchedArr);
@@ -82,8 +85,9 @@ const GetDate = () => {
     const dateList = matchedDates.map((dog, k) => <DateCardMaps dog={dog} key={k} registerToPlaydate={registerToPlaydate} UnregisterToPlaydate={UnregisterToPlaydate} participants={dog.participants} />)
 
     return (
-        <div className="container">
+        <div className="container bg-white">
             <header className="jumbotron">
+            <h1>Register your dog for playdates!</h1>
                 <Calendar matchedDates={matchedDates} month={7} year={2023} />
                 
                 {/* <div className='list'>{dateList}</div> */}
@@ -93,4 +97,4 @@ const GetDate = () => {
     )
 }
 
-export default GetDate;
+export default GetDate_;

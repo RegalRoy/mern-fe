@@ -47,6 +47,19 @@ label {
   padding: 40px 40px;
 }
 
+.container {
+  border: 1px solid #ccc; /* Add a solid border with a light gray color */
+  border-radius: 10px; /* Apply rounded corners */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Add a faded shadow effect */
+  padding: 20px; /* Optional: Add some padding to the container to create space around the content */
+  margin-bottom: 20px; /* Add margin below the container */
+  margin-top: 20px;
+}
+
+.containerTest{
+  padding-top: 20px;
+}
+
 .card {
   background-color: #f7f7f7;
   padding: 20px 25px 30px;
@@ -73,7 +86,7 @@ label {
 .table td {
    /* Change the color and style as per your design */
   /* You can also add padding, margin, or other styles to customize the look */
-  background-color: lightgrey;
+  background-color: #d5dcee;
 }
 
 td.matched{
@@ -95,6 +108,15 @@ td.matchedAndReg{
   margin-bottom: 10px;
   margin-right: 10px;
   margin-top: 10px;
+  /* background-color: orange; */
+}
+
+.btn-dangerOwner{
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  background-color: rgb(81, 37, 244);
+  color: white;
 }
 
 .table {
@@ -151,6 +173,26 @@ td.matchedAndReg{
   padding: 10px; 
   width: 100%;
   height: 100%;  
+}
+
+.badge-warning{
+  background-color: rgb(95, 81, 251);
+  font-weight: bold;
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 10px; 
+  width: 100%;
+  height: 100%;
+}
+
+.badge-past{
+  background-color: rgb(24, 24, 26);
+  font-weight: bold;
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 10px; 
+  width: 100%;
+  height: 100%;
 }
 
 .day{
@@ -284,12 +326,19 @@ end of comment style
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20px;
   width: 50%;
+  /* padding-top: 20px; */
+}
+
+.bg-grey{
+  background-color: #d5dcee;
 }
 
 .container-fluid {
   padding: 60px 50px;
   display: block;
+  /* display: flex; */
 }
 
 /*
@@ -305,12 +354,13 @@ style rating
   padding: 0;
 }
 .rate {
-  float: left;
+  /* float: right; */
   /* height: 46px; */
   padding: 0 10px;
   /* display: flex; Use flexbox */
   /* justify-content: flex-end; Align stars to the right of the container */
   padding: 0 10px;
+  float:left
 }
 .rate:not(:checked) > input {
   position:absolute;
@@ -343,4 +393,16 @@ style rating
   color: #c59b08;
 }
 
+#dateComment {
+  width: 50%;
+}
+
 /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+
+.badge-pill{
+  cursor: pointer;
+}
+
+li{
+  cursor: pointer;
+}

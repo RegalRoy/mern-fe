@@ -52,7 +52,7 @@ const AddDate = () => {
 
 
     return (
-        <div>
+        <div className='shadow-lg p-3 mb-5 bg-white rounded'>
             <form >
                 <div className="form-group">
                     <label htmlFor="dateAndTime">dateAndTime</label>

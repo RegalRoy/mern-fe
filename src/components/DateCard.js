@@ -88,10 +88,7 @@ const DateCard = (props) => {
         <p>{matchedMo + " / " + dayMatched}</p>
         <h4>Location:</h4>
         <p>Location: {dog.location}</p>
-        <h4>Participants</h4>
-        <ul>
-          {dog.participants.map(e => <li>{e}</li>)}
-        </ul>
+       
 
         <div className="MapSample">
           {!isLoaded ? (
@@ -104,6 +101,10 @@ const DateCard = (props) => {
             />
           )}
         </div>
+        <h4>Participants</h4>
+        <ul>
+          {dog.participants.map(e => <li>{e}</li>)}
+        </ul>
 
     
 

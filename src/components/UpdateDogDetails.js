@@ -65,7 +65,7 @@ const handleUpdateDog_photo = (e) => {
       })
 }
   return (
-    <div>
+    <div className='shadow-lg p-3 mb-5 bg-white rounded'>
       <h1>Updating Details of {dog.dogName}</h1>
       <form onSubmit={handleUpdateDog_photo}>
         <div className="form-group">

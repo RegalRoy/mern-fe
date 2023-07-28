@@ -14,6 +14,9 @@ const Calendar = ({ matchedDates, month, year }) => {
   var _displayMatchedDates = []
   var __displayMatchedDates = []
   var dateLoc = [];
+  const currentDate = new Date();
+  const currentDay = currentDate.getDate();
+
   const moveNext = () => {
     let nextMonth = currentMonth + 1;
     let nextYear = currentYear;
@@ -165,32 +168,31 @@ const Calendar = ({ matchedDates, month, year }) => {
             __displayMatchedDates.push(..._displayMatchedDates)
 
 
-            // if (_displayMatchedDates[0].participants.includes(currentUser.username)) {
-            //   weekDays.push(
-            //     <td key={j} className='matchedAndReg' onClick={(event) => handleDayClick2(event, day)}>
-            //       {day} @ {_displayMatchedDates[0].location}
-            //     </td>
-            //   );
-            // } else {
-            //   weekDays.push(
-            //     <td key={j} className='matched' onClick={(event) => handleDayClick2(event, day)}>
-            //       {day} @ {_displayMatchedDates[0].location}
-            //     </td>
-            //   );
-            // }
+
 
             weekDays.push(
               <td key={j} className='day' onClick={(event) => handleDayClick2(event, day)}>
                 {day}
 
-                {/* {_displayMatchedDates.map(date => <tr><span className="badge badge-pill badge-primary" id={date._id} onClick={(event) => handlePillClicked(event)}>{date.location}</span></tr>)} */}
+
 
                 {_displayMatchedDates.map(date => {
+                  const newDate = new Date(date.dateAndTime)
+                  const matchedYr = newDate.getFullYear();
+                  const matchedMo = newDate.getMonth() + 1;
+                  const dayMatched = newDate.getDate();
 
-                  if (date.participants.includes(currentUser.username)) {
-                   return <tr><span className="badge badge-pill badge-primary" id={date._id} onClick={(event) => handlePillClicked(event)}>{date.location}</span></tr>
-                  } else {
-                   return <tr><span className="badge badge-pill badge-secondary" id={date._id} onClick={(event) => handlePillClicked(event)}>{date.location}</span></tr>
+                  if (dayMatched < currentDay) {
+                    return <tr><span className="badge badge-pill badge-past" id={date._id} onClick={(event) => handlePillClicked(event)}>{date.location}</span></tr>
+                  }
+                  else if (date.ownerId === currentUser.id) {
+                    return <tr><span className="badge badge-pill badge-warning" id={date._id} onClick={(event) => handlePillClicked(event)}>{date.location}</span></tr>
+                  } else if ((date.participants.includes(currentUser.username))) {
+                    return <tr><span className="badge badge-pill badge-primary" id={date._id} onClick={(event) => handlePillClicked(event)}>{date.location}</span></tr>
+                  }
+
+                  else {
+                    return <tr><span className="badge badge-pill badge-secondary" id={date._id} onClick={(event) => handlePillClicked(event)}>{date.location}</span></tr>
                   }
 
                 })}
@@ -249,6 +251,12 @@ const Calendar = ({ matchedDates, month, year }) => {
 
   return (
     <div>
+      <div>
+      <span className="badge badge-pill badge-warning">Dates That You Organized</span>
+      <span className="badge badge-pill badge-past" >Previous Dates (ALL) </span>
+      <span className="badge badge-pill badge-primary">Future Dates That You Regisrtered</span>
+      <span className="badge badge-pill badge-secondary" >Future Dates That You Qualify For</span>
+      </div>
       <h2>
         {getMonthName(currentMonth)} {currentYear}
       </h2>
@@ -274,26 +282,15 @@ const Calendar = ({ matchedDates, month, year }) => {
       <div>
         <h4>Locations of available dates: </h4>
         <ul>
-          {__displayMatchedDates.map(d => <span class="badge rounded-pill text-bg-primary" onClick={(event) => handleLocClick(event)}>
-            {d.location}</span>)}
+          {__displayMatchedDates.map(d => <li> <span class="badge rounded-pill text-bg-primary" onClick={(event) => handleLocClick(event)}>
+            {d.location} </span></li>)}
 
         </ul>
 
       </div>
-      {/* <div>
-      {displayMatchedDates.map((dog, k) => (<DateCard dog={dog} key={k} registerToPlaydate={registerToPlaydate} UnregisterToPlaydate={UnregisterToPlaydate} participants={dog.participants} />))}
-      
-      </div> */}
+
       <h3>Your date List</h3>
-      {/* <div>
-        {displayMatchedDates.length === 0 && location.length===0? 
-        __displayMatchedDates.map((dog, k) => (<DateCard dog={dog} key={k} registerToPlaydate={registerToPlaydate} UnregisterToPlaydate={UnregisterToPlaydate} participants={dog.participants} />))
-        :!displayMatchedDates.length === 0 && location.length===0?
-        displayMatchedDates.map((dog, k) => (<DateCard dog={dog} key={k} registerToPlaydate={registerToPlaydate} UnregisterToPlaydate={UnregisterToPlaydate} participants={dog.participants} />))
-        :displayMatchedDates.length === 0 && !location.length===0?
-        location.map((dog, k) => (<DateCard dog={dog} key={k} registerToPlaydate={registerToPlaydate} UnregisterToPlaydate={UnregisterToPlaydate} participants={dog.participants} />))
-        : <h3>NO MATCH</h3>}
-      </div> */}
+
 
       <div className='calViewDates'>
         {displayMatchedDates.length === 0 && location.length === 0

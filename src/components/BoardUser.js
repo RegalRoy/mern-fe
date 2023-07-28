@@ -34,7 +34,7 @@ const BoardUser = () => {
   return (
     <div className="shadow-lg p-3 mb-5 bg-white rounded">
       <header className="jumbotron">
-        <h3>Your Dog List</h3>
+        <h3>Your Dog List!</h3>
         <div className='list'>{dogList}</div>
       </header>
     </div>

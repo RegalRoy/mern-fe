@@ -21,8 +21,8 @@ const ShowDogDetails = () => {
   }
   const dogPic = <DogCard dog={dog} />
   return (
-    <div>
-      <table className='table'>
+    <div className= 'shadow-lg p-3 mb-5 bg-white rounded'>
+      <table className="">
         <tbody>
           <tr>
             {/* <th scope='row'>1</th> */}
@@ -60,7 +60,7 @@ const ShowDogDetails = () => {
                 {/* ... table rows here ... */}
               </table>
               <div>
-                <DogCard dog={dog} />
+              <DogCard dog={dog} />
               </div>
               <div className='dog-actions'>
                 <button className="btn btn-danger" onClick={() => onDelete(dog._id)}>Delete</button>
