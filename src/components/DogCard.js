@@ -10,6 +10,7 @@ const DogCard =(props)=>{
   const backendBaseUrl = "http://localhost:8080/uploads/"; // Replace with your actual backend URL
   useEffect(()=>{
     const filePath = dog.photo;
+    console.log(filePath)
     const filename = filePath.split('\\').pop();
     setPhotoUrl(backendBaseUrl+filename);
     // console.log("poto is .. ")
@@ -18,7 +19,6 @@ const DogCard =(props)=>{
     // console.log(dog)
   }, [dog.photo])
   
-
     return (
         <div className='card'>
           
