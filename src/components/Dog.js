@@ -26,6 +26,8 @@ const Dog = () => {
     }
     const handleFileChange = (event) => {
         setDog({ ...dog, photo: event.target.files[0] });
+        console.log("check...")
+        console.log(event.target.files[0])
     }
 
     const handleFileChange2 = (event) => {
@@ -44,10 +46,10 @@ const Dog = () => {
 
     const handleCreateDog = (e) => {
         e.preventDefault();
-        console.log(dog)
+        // console.log(dog)
         DogService.AddDog(dog)
             .then((res) => {
-                console.log("checking dog created..." + dog);
+                // console.log("checking dog created..." + dog);
                 setDog({
                     dogName: '',
                     dogAge: '',
@@ -72,10 +74,10 @@ const Dog = () => {
         formData.append('dogTemperament', dog.dogTemperament);
         formData.append('ownerId', dog.ownerId);
         formData.append('photo', dog.photo);
-        console.log(formData)
+        // console.log(formData)
         DogService.AddDog(formData)
             .then((res) => {
-                console.log("checking dog created..." + dog);
+                // console.log("checking dog created..." + dog);
                 setDog({
                     dogName: '',
                     dogAge: '',

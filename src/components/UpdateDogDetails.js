@@ -15,6 +15,8 @@ const UpdateDogDetails = () => {
     dogTemperament: "",
     ownerId: currentUser.id
   })
+  const [image, setImage] = useState("")
+
   const onChange = (e) => {
     setDog({ ...dog, [e.target.name]: e.target.value });
   };
@@ -28,10 +30,44 @@ const UpdateDogDetails = () => {
 
     DogService.updateDog(id, dog); navigate("/user")
   }
+  const handleFileChange = (event) => {
+    setDog({ ...dog, photo: event.target.files[0] });
+    console.log("check...")
+    console.log(event.target.files[0])
+}
+
+const handleUpdateDog_photo = (e) => {
+  e.preventDefault();
+  const formData = new FormData();
+  formData.append('dogName', dog.dogName);
+  formData.append('dogAge', dog.dogAge);
+  formData.append('dogBreed', dog.dogBreed);
+  formData.append('dogSize', dog.dogSize);
+  formData.append('dogTemperament', dog.dogTemperament);
+  formData.append('ownerId', dog.ownerId);
+  formData.append('photo', dog.photo);
+  // console.log(formData)
+  DogService.updateDog(id, formData)
+      .then((res) => {
+          // console.log("checking dog created..." + dog);
+          setDog({
+              dogName: '',
+              dogAge: '',
+              dogBreed: '',
+              dogSize: '',
+              dogTemperament: "",
+              ownerId: currentUser.id,
+              photo: ""
+              // ownerId:""
+          });
+
+          navigate('/user')
+      })
+}
   return (
     <div>
       <h1>Updating Details of {dog.dogName}</h1>
-      <form onSubmit={updateDog}>
+      <form onSubmit={handleUpdateDog_photo}>
         <div className="form-group">
           <label htmlFor="username">Dog Name</label>
           <input
@@ -143,6 +179,14 @@ const UpdateDogDetails = () => {
 
           </select>
         </div>
+        <div className="form-group">
+                    <input type="file" name="photo" onChange={handleFileChange} />
+                </div>
+
+                <div>
+                    {image==""||image==null?"":<img width={100} height={100} src={image}></img> }
+                    
+                </div>
 
         <input
           type='submit'
