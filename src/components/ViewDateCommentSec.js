@@ -101,7 +101,7 @@ const ViewDate = () => {
   
 
   return (
-    <div>
+    <div className='container bg-white'>
       <table className='table'>
         <tbody>
           <tr>
@@ -232,9 +232,9 @@ const ViewDate = () => {
 
       {
         Array.isArray(date.participants) ? date.participants.includes(currentUser.username) ?
-          <div>
+          <div >
             <h4>Rate this date!</h4>
-            <div class="rate container">
+            <div className="rate" style={{ float: "left" }}>
               <input type="radio" id="star5" name="rate" value="5" onClick={(event) => rating(event)}/>
               <label for="star5" title="text">5 stars</label>
               <input type="radio" id="star4" name="rate" value="4" onClick={(event) => rating(event)}/>
@@ -255,8 +255,8 @@ const ViewDate = () => {
         Array.isArray(date.participants) ? date.participants.includes(currentUser.username) ?
           <div>
 
-            <form>
-              <textarea name='dateComment' id='dateComment' rows="7" cols="100"></textarea>
+            <form className='container' style={{ float: "left" }}>
+              <textarea name='dateComment' id='dateComment' rows="5"></textarea>
 
             </form>
             <button className='btn btn-primary' type="button" onClick={(e) => handleComment(e)}>POST Comment</button>

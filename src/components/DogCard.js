@@ -27,10 +27,10 @@ const DogCard =(props)=>{
 
           <div className='desc'>
             <h2>
-              <Link to={`/viewDog/${dog._id}`}>NAME: {dog.dogName}</Link>
+              <Link to={`/viewDog/${dog._id}`}>{dog.dogName}</Link>
             </h2>
-            <h3>Breed: {dog.dogBreed}</h3>
-            <p>Size: {dog.dogSize}</p>
+            {/* <h3>Breed: {dog.dogBreed}</h3>
+            <p>Size: {dog.dogSize}</p> */}
           </div>
         </div>
       );

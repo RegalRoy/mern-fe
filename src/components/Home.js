@@ -23,7 +23,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="">
       <header className="jumbotron">
         <img src={content} alt="alt title" className="rounded mx-auto d-block" />
         <div className="shadow-lg p-3 mb-5 bg-white rounded">

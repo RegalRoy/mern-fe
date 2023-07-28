@@ -76,7 +76,7 @@ const DateCard = (props) => {
   }
 
   return (
-    <div className='card-container' >
+    <div className='card-container container bg-grey' >
 
 
       <div className='desc'>
@@ -85,9 +85,25 @@ const DateCard = (props) => {
           {[...Array(5)].map((_, i) => (
             <span key={i} className={`fa fa-star ${i < aveRating ? "checked" : ""}`}></span>
           ))}
+          ({dog.rating.length})
         </div>
         <div className="buttonContainer">
-          {dog.participants.includes(currentUser.username) ? <a href="#" className="btn btn-danger" onClick={() => props.UnregisterToPlaydate(dog._id)}>UnRegister</a> : <a href="#" className="btn btn-primary" onClick={() => props.registerToPlaydate(dog._id)}>Register</a>}
+          {/* {dog.participants.includes(currentUser.username) ? <a href="#" className="btn btn-danger" onClick={() => props.UnregisterToPlaydate(dog._id)}>UnRegister</a> : <a href="#" className="btn btn-primary" onClick={() => props.registerToPlaydate(dog._id)}>Register</a>} */}
+
+          {dog.ownerId === currentUser.id ? (
+            <a href="#" className="btn btn-dangerOwner">
+            You Own This Date
+          </a>
+          ) : dog.participants.includes(currentUser.username) ? (
+            <a href="#" className="btn btn-danger" onClick={() => props.UnregisterToPlaydate(dog._id)}>
+              UnRegister
+            </a>
+          ) : (
+            <a href="#" className="btn btn-primary" onClick={() => props.registerToPlaydate(dog._id)}>
+              Register
+            </a>
+          )}
+
 
         </div>
         <h5>
@@ -97,10 +113,7 @@ const DateCard = (props) => {
         <p>{matchedMo + " / " + dayMatched}</p>
         <h4>Location:</h4>
         <p>Location: {dog.location}</p>
-        <h4>Participants</h4>
-        <ul>
-          {dog.participants.map(e => <li>{e}</li>)}
-        </ul>
+
 
         <div className='card'>
           {/* Other components */}
@@ -108,26 +121,15 @@ const DateCard = (props) => {
 
           {/* Other components */}
         </div>
-
-
-
-      </div>
-
-      <div>
-        {/* <div>
-          <h2>Star Rating</h2>
-          {
-            
-          }
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
-        </div> */}
+        <h4>Participants</h4>
+        <ul>
+          {dog.participants.map(e => <li>{e}</li>)}
+        </ul>
 
 
       </div>
+
+
 
     </div>
   );

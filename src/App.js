@@ -160,7 +160,7 @@ const App = () => {
         )}
       </nav>
 
-      <div className="container mt-3">
+      <div className="">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
