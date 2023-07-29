@@ -20,15 +20,15 @@ const DogCard =(props)=>{
   }, [dog.photo])
   
     return (
-        <div className='card'>
+        <div className='card' style={{ width: '18rem' }}>
           
           {photoUrl && <img src={photoUrl} alt="Dog Photo" />}
           {/* <img src='http://localhost:8080/uploads/dog.png' ></img> */}
 
           <div className='desc'>
-            <h2>
+            <h5>
               <Link to={`/viewDog/${dog._id}`}>{dog.dogName}</Link>
-            </h2>
+            </h5>
             {/* <h3>Breed: {dog.dogBreed}</h3>
             <p>Size: {dog.dogSize}</p> */}
           </div>
