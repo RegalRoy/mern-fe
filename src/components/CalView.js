@@ -202,11 +202,22 @@ const Calendar = ({ matchedDates, month, year }) => {
 
 
           } else {
-            weekDays.push(
-              <td key={j} onClick={(event) => handleDayClick2(event, day)}>
-                {day}
-              </td>
-            );
+            if (day === currentDay) {
+              weekDays.push(
+
+                <td key={j} onClick={(event) => handleDayClick2(event, day)} className='currenyDay'>
+                  {day}
+                </td>
+              );
+            } else {
+              weekDays.push(
+
+                <td key={j} onClick={(event) => handleDayClick2(event, day)}>
+                  {day}
+                </td>
+              );
+            }
+
           }
 
 
@@ -251,15 +262,16 @@ const Calendar = ({ matchedDates, month, year }) => {
 
   return (
     <div>
+      <div><h4>Legend : </h4></div>
       <div>
-      <span className="badge badge-pill badge-warning">Dates That You Organized</span>
-      <span className="badge badge-pill badge-past" >Previous Dates (ALL) </span>
-      <span className="badge badge-pill badge-primary">Future Dates That You Regisrtered</span>
-      <span className="badge badge-pill badge-secondary" >Future Dates That You Qualify For</span>
+        <span className="badge badge-pill badge-warning legend">Dates That You Organized</span>
+        <span className="badge badge-pill badge-past legend" >Previous Dates (ALL) </span>
+        <span className="badge badge-pill badge-primary legend">Future Dates That You Regisrtered</span>
+        <span className="badge badge-pill badge-secondary legend" >Future Dates That You Qualify For</span>
       </div>
-      <h2>
+      <h1>
         {getMonthName(currentMonth)} {currentYear}
-      </h2>
+      </h1>
       <table className='table'>
         <thead>
           <tr>

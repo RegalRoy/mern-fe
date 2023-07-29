@@ -406,3 +406,18 @@ style rating
 li{
   cursor: pointer;
 }
+
+.currenyDay{
+  background-color: #61dafb;
+}
+
+.legend{
+  width: 25%;
+  
+}
+
+.horizontal-container{
+  display: flex;        /* Set the container to use Flexbox */
+  flex-wrap: nowrap;    /* Prevent wrapping to keep cards in a single row */
+  justify-content: flex-start; 
+}
