@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import AuthService from "../services/auth.service";
 import UserService from '../services/user.service';
 import React, { useState, useEffect } from "react";
-
+import Alert from 'react-bootstrap/Alert';
 
 const AddDate = () => {
     const navigate = useNavigate();
@@ -17,13 +17,19 @@ const AddDate = () => {
 
     }
     )
+    const [showSuccessBanner, setShowSuccessBanner] = useState(false); // State variable for success banner
 
     const [dateUpdated, setDateUpdated] = useState(false);
 
 
     useEffect(() => {
         if (dateUpdated) {
-            UserService.AddDate(Date);
+            UserService.AddDate(Date).then((res=>{
+                setShowSuccessBanner(true); // Show success banner after form submission
+                setTimeout(() => {
+                    setShowSuccessBanner(false);navigate('/getDate') // Hide the success banner after a few seconds (adjust timing as needed)
+                }, 5000);
+            }));
             setDateUpdated(false);
         }
     }, [Date, dateUpdated]);
@@ -126,6 +132,23 @@ const AddDate = () => {
                 <button type="button" className='btn btn-primary' onClick={(e) => handleCreateDate(e)}>SEND</button>
 
             </form>
+            <div style={{paddingTop:10}}>
+            {showSuccessBanner && (
+               <Alert variant="success" >
+               <Alert.Heading>Hey, nice to see you</Alert.Heading>
+               <p>
+                 Aww yeah, you successfully read this important alert message. This
+                 example text is going to run a bit longer so that you can see how
+                 spacing within an alert works with this kind of content.
+               </p>
+               <hr />
+               <p className="mb-0">
+                 Whenever you need to, be sure to use margin utilities to keep things
+                 nice and tidy.
+               </p>
+             </Alert>
+            )}
+            </div>
         </div>
     )
 }

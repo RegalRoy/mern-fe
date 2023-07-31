@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import DogService from '../services/dog.service';
 import AuthService from "../services/auth.service";
+import Alert from 'react-bootstrap/Alert';
 
 const UpdateDogDetails = () => {
   const currentUser = AuthService.getCurrentUser();
@@ -16,6 +17,7 @@ const UpdateDogDetails = () => {
     ownerId: currentUser.id
   })
   const [image, setImage] = useState("")
+  const [showSuccessBanner, setShowSuccessBanner] = useState(false); // State variable for success banner
 
   const onChange = (e) => {
     setDog({ ...dog, [e.target.name]: e.target.value });
@@ -34,36 +36,40 @@ const UpdateDogDetails = () => {
     setDog({ ...dog, photo: event.target.files[0] });
     console.log("check...")
     console.log(event.target.files[0])
-}
+  }
 
-const handleUpdateDog_photo = (e) => {
-  e.preventDefault();
-  const formData = new FormData();
-  formData.append('dogName', dog.dogName);
-  formData.append('dogAge', dog.dogAge);
-  formData.append('dogBreed', dog.dogBreed);
-  formData.append('dogSize', dog.dogSize);
-  formData.append('dogTemperament', dog.dogTemperament);
-  formData.append('ownerId', dog.ownerId);
-  formData.append('photo', dog.photo);
-  // console.log(formData)
-  DogService.updateDog(id, formData)
+  const handleUpdateDog_photo = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('dogName', dog.dogName);
+    formData.append('dogAge', dog.dogAge);
+    formData.append('dogBreed', dog.dogBreed);
+    formData.append('dogSize', dog.dogSize);
+    formData.append('dogTemperament', dog.dogTemperament);
+    formData.append('ownerId', dog.ownerId);
+    formData.append('photo', dog.photo);
+    // console.log(formData)
+    DogService.updateDog(id, formData)
       .then((res) => {
-          // console.log("checking dog created..." + dog);
-          setDog({
-              dogName: '',
-              dogAge: '',
-              dogBreed: '',
-              dogSize: '',
-              dogTemperament: "",
-              ownerId: currentUser.id,
-              photo: ""
-              // ownerId:""
-          });
+        // console.log("checking dog created..." + dog);
+        setDog({
+          dogName: '',
+          dogAge: '',
+          dogBreed: '',
+          dogSize: '',
+          dogTemperament: "",
+          ownerId: currentUser.id,
+          photo: ""
+          // ownerId:""
+        });
 
-          navigate('/user')
+        setShowSuccessBanner(true); // Show success banner after form submission
+        setTimeout(() => {
+          setShowSuccessBanner(false); navigate('/user') // Hide the success banner after a few seconds (adjust timing as needed)
+        }, 5000);
+
       })
-}
+  }
   return (
     <div className='shadow-lg p-3 mb-5 bg-white rounded'>
       <h1>Updating Details of {dog.dogName}</h1>
@@ -179,20 +185,43 @@ const handleUpdateDog_photo = (e) => {
 
           </select>
         </div>
-        <div className="form-group">
-                    <input type="file" name="photo" onChange={handleFileChange} />
-                </div>
+        {/* <div className="form-group">
+          <input type="file" name="photo" onChange={handleFileChange} />
+        </div> */}
+        <div className="mb-3">
+          <label for="formFile" className="form-label">Default file input example</label>
+          <input className="form-control" type="file" id="formFile" name="photo" onChange={handleFileChange} />
+        </div>
 
-                <div>
-                    {image==""||image==null?"":<img width={100} height={100} src={image}></img> }
-                    
-                </div>
+        <div>
+          {image == "" || image == null ? "" : <img width={100} height={100} src={image}></img>}
+
+        </div>
 
         <input
           type='submit'
           className='btn btn-outline-warning btn-block mt-4'
         />
+
+
       </form>
+      <div style={{ paddingTop: 10 }}>
+        {showSuccessBanner && (
+          <Alert variant="success" >
+            <Alert.Heading>Hey, nice to see you</Alert.Heading>
+            <p>
+              Aww yeah, you successfully read this important alert message. This
+              example text is going to run a bit longer so that you can see how
+              spacing within an alert works with this kind of content.
+            </p>
+            <hr />
+            <p className="mb-0">
+              Whenever you need to, be sure to use margin utilities to keep things
+              nice and tidy.
+            </p>
+          </Alert>
+        )}
+      </div>
     </div>
   )
 }

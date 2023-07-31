@@ -1,7 +1,15 @@
-import logo from "./logo/snifferslogo-removebg-preview.png"
+// import logo from "./logo/snifferslogo-removebg-preview.png"
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import './App.css';
+import { Dropdown } from 'react-bootstrap';
+
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+
+import logo from './logo/group.png'
 
 import AuthService from "./services/auth.service";
 import DogService from "./services/dog.service";
@@ -25,28 +33,7 @@ import EditDate2 from './components/EditDate2'
 import GetDateTest from './components/GetDateTest';
 import ViewAvailableDates from './components/ViewAvailableDates'
 import ViewAvailableDates2 from './components/ViewAvailableDates2'
-// import { registerLicense } from '@syncfusion/ej2-base';
-// registerLicense('ORg4AjUWIQA/Gnt2VVhhQlFaclhJWHxMYVF2R2FJeFRycF9FaEwgOX1dQl9hSXpTcEVmWn9feHVRQWY=');
-// function App_backUp() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
+
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -72,95 +59,148 @@ const App = () => {
   }
 
   return (
-    <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <Link to={"/"} className="navbar-brand">
-          <img src={logo} alt="logo" />
-        </Link>
-        <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={"/home"} className="nav-link">
-              Home
-            </Link>
-          </li>
+    <div >
+      <div className="nav-container">
+        <Navbar bg="dark" data-bs-theme="dark" className="">
+          <Container>
+            {/* {currentUser && (
+              // <Navbar.Brand href="/home">Play Date Finder</Navbar.Brand>
+              <img src={logo} style={{ width: '20%', height: 'auto' }}></img>
+            )} */}
+            {/* <Navbar.Brand href="/home">Play Date Finder</Navbar.Brand> */}
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Navbar.Brand href="#home">
 
-          {showModeratorBoard && (
-            <li className="nav-item">
-              <Link to={"/mod"} className="nav-link">
-                Moderator Board
-              </Link>
-            </li>
-          )}
+                  <Link to={"/home"} className="nav-link">
+                    Home
+                  </Link>
 
-          {showAdminBoard && (
-            <li className="nav-item">
-              <Link to={"/admin"} className="nav-link">
-                Admin Board
-              </Link>
-            </li>
-          )}
+                </Navbar.Brand>
 
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
-                User
-              </Link>
-            </li>
-          )}
-        </div>
 
-        {currentUser ? (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">
-                {currentUser.username}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={logOut}>
-                LogOut
-              </a>
-            </li>
-            <li className="nav-item">
-              <Link to={"/addDog"} className="nav-link">
-                Add Dog!
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/addDate"} className="nav-link">
-                Add a Playdate!
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/getDate"} className="nav-link">
-                Your Playdate!
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/viewAvailableDates"} className="nav-link">
-                Register for Playdate!
-              </Link>
-            </li>
 
-          </div>
-        ) : (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/login"} className="nav-link">
-                Login
-              </Link>
-            </li>
 
-            <li className="nav-item">
-              <Link to={"/register"} className="nav-link">
-                Sign Up
-              </Link>
-            </li>
-          </div>
-        )}
-      </nav>
+                {currentUser && (
+                 
+                  <Nav.Link href="#link">
+                    <li className="nav-item">
+                      <Link to={"/profile"} className="nav-link">
+                        Signed in as {currentUser.username}
+                      </Link>
+                    </li>
+                   
+                  </Nav.Link>
 
-      <div className="">
+                 
+
+                )}
+
+
+                {currentUser ? (
+                  <div className="navbar-nav ml-auto">
+
+
+                    <Nav.Link href="#link">
+                      <NavDropdown title="Dog Options" id="basic-nav-dropdown">
+
+                        {/* <NavDropdown.Item href="#action/3.1"> <Link to={"/addDog"} className="">
+                        Add Dog!
+                      </Link>
+                      </NavDropdown.Item> */}
+
+                        <Nav.Item>
+                          <Nav.Link href="/addDog">Add Dog</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                          <Nav.Link href="/user"> Your Dog List</Nav.Link>
+                        </Nav.Item>
+
+                        {/* <NavDropdown.Item href="#action/3.1"> <Link to={"/user"} className="">
+                        Your Dog List
+                      </Link>
+                      </NavDropdown.Item> */}
+
+
+                      </NavDropdown>
+                    </Nav.Link>
+
+                    <Nav.Link href="#link">
+                      <NavDropdown title="PLayDaate Options" id="basic-nav-dropdown">
+
+                        {/* <NavDropdown.Item href="#action/3.1"> <Link to={"/addDate"} className="">
+                        Add a Playdate!
+                      </Link>
+                      </NavDropdown.Item> */}
+
+                        <Nav.Item>
+                          <Nav.Link href="/addDate">  Add a Playdate!</Nav.Link>
+                        </Nav.Item>
+
+                        {/* <NavDropdown.Item href="#action/3.1">   <Link to={"/getDate"} className="">
+                        Your Playdate!
+                      </Link>
+                      </NavDropdown.Item> */}
+
+                        <Nav.Item>
+                          <Nav.Link href="/getDate"> Created Playdate!</Nav.Link>
+                        </Nav.Item>
+
+                        {/* <NavDropdown.Item href="#action/3.1">   <Link to={"/viewAvailableDates"} className="">
+                        Register for Playdate!
+                      </Link>
+                      </NavDropdown.Item> */}
+
+                        <Nav.Item>
+                          <Nav.Link href="/viewAvailableDates">Join Playdates!</Nav.Link>
+                        </Nav.Item>
+
+
+                      </NavDropdown>
+                    </Nav.Link>
+
+
+                    <Nav.Link href="#link">
+                      <li className="nav-item">
+                        <a href="/login" className="nav-link" onClick={logOut}>
+                          LogOut
+                        </a>
+                      </li>
+                    </Nav.Link>
+
+
+
+
+                  </div>
+                ) : (
+                  <div className="navbar-nav ml-auto">
+                    <Nav.Link href="#link">
+                      <li className="nav-item">
+                        <Link to={"/login"} className="nav-link">
+                          Login
+                        </Link>
+                      </li>
+                    </Nav.Link>
+                    <Nav.Link href="#">
+                      <li className="nav-item">
+                        <Link to={"/register"} className="nav-link">
+                          Sign Up
+                        </Link>
+                      </li>
+                    </Nav.Link>
+                  </div>
+                )}
+
+
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+
+      </div>
+
+      <div className="content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
