@@ -416,8 +416,23 @@ li{
   
 }
 
-.horizontal-container{
-  display: flex;        /* Set the container to use Flexbox */
-  flex-wrap: nowrap;    /* Prevent wrapping to keep cards in a single row */
-  justify-content: flex-start; 
+
+
+.horizontal-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  overflow: auto;
+}
+
+
+.nav-container {
+  position: fixed;
+  width: 100%;
+  
+  top: 0;
+  z-index: 1000; /* To ensure the NavBar is on top of other elements */
+}
+
+.content {
+  padding-top: 150px; /* Adjust the value as needed based on your NavBar's height */
 }

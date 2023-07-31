@@ -5,6 +5,8 @@ import axios from 'axios';
 import authHeader from '../services/auth-header';
 import { useNavigate } from 'react-router-dom';
 import AuthService from "../services/auth.service";
+import Alert from 'react-bootstrap/Alert';
+
 
 
 const Dog = () => {
@@ -20,6 +22,8 @@ const Dog = () => {
         photo: ""
     })
     const [image, setImage] = useState("")
+    const [showSuccessBanner, setShowSuccessBanner] = useState(false); // State variable for success banner
+
     const onChange = (e) => {
 
         setDog({ ...dog, [e.target.name]: e.target.value })
@@ -33,15 +37,15 @@ const Dog = () => {
     const handleFileChange2 = (event) => {
         var reader = new FileReader();
         reader.readAsDataURL(event.target.files[0]);
-        reader.onload = () =>{
+        reader.onload = () => {
             // console.log(reader.result); //base 64 string
             setImage(reader.result)
             setDog({ ...dog, photo: reader.result });
         }
-        reader.onerror = error =>{
+        reader.onerror = error => {
             console.log("error" + error)
         }
-        
+
     }
 
     const handleCreateDog = (e) => {
@@ -89,7 +93,12 @@ const Dog = () => {
                     // ownerId:""
                 });
 
-                navigate('/user')
+                setShowSuccessBanner(true); // Show success banner after form submission
+                setTimeout(() => {
+                    setShowSuccessBanner(false);navigate('/user') // Hide the success banner after a few seconds (adjust timing as needed)
+                }, 5000);
+
+                // navigate('/user')
             })
     }
 
@@ -167,13 +176,18 @@ const Dog = () => {
 
                     </select>
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                     <input type="file" name="photo" onChange={handleFileChange} />
+                </div> */}
+
+                <div className="mb-3">
+                    <label for="formFile" className="form-label">Default file input example</label>
+                    <input className="form-control" type="file" id="formFile" name="photo" onChange={handleFileChange} />
                 </div>
 
                 <div>
-                    {image==""||image==null?"":<img width={100} height={100} src={image}></img> }
-                    
+                    {image == "" || image == null ? "" : <img width={100} height={100} src={image}></img>}
+
                 </div>
 
                 <input
@@ -181,6 +195,23 @@ const Dog = () => {
                     className='btn btn-outline-warning btn-block mt-4'
                 />
             </form>
+            <div style={{paddingTop:10}}>
+            {showSuccessBanner && (
+               <Alert variant="success" >
+               <Alert.Heading>Hey, nice to see you</Alert.Heading>
+               <p>
+                 Aww yeah, you successfully read this important alert message. This
+                 example text is going to run a bit longer so that you can see how
+                 spacing within an alert works with this kind of content.
+               </p>
+               <hr />
+               <p className="mb-0">
+                 Whenever you need to, be sure to use margin utilities to keep things
+                 nice and tidy.
+               </p>
+             </Alert>
+            )}
+            </div>
         </div>
     )
 }

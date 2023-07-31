@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service"
 import { useEffect, useState } from "react";
 import UserService from "../services/user.service";
+import Alert from 'react-bootstrap/Alert';
 
 const EditDate = () => {
     // const currentUser = AuthService.getCurrentUser();
@@ -22,11 +23,17 @@ const EditDate = () => {
     )
 
     const [dateUpdated, setDateUpdated] = useState(false);
+    const [showSuccessBanner, setShowSuccessBanner] = useState(false); // State variable for success banner
 
 
     useEffect(() => {
         if (dateUpdated) {
-            UserService.EditDate(id, date); navigate('/getDate');
+            UserService.EditDate(id, date).then(r=>{
+                setShowSuccessBanner(true); // Show success banner after form submission
+                setTimeout(() => {
+                    setShowSuccessBanner(false);navigate('/getDate') // Hide the success banner after a few seconds (adjust timing as needed)
+                }, 5000);
+            })
             setDateUpdated(false);
         } else {
             UserService.ViewDate(id).then((res) => setDate(res.data))
@@ -59,7 +66,7 @@ const EditDate = () => {
 
 
     return (
-        <div>
+        <div className='shadow-lg p-3 mb-5 bg-white rounded'>
             <h1>Editing Date Details</h1>
             <form >
                 <div className="form-group">
@@ -143,6 +150,23 @@ const EditDate = () => {
                 <button className='btn btn-primary' type="button" onClick={(e) => handleCreateDate(e)}>SEND</button>
 
             </form>
+            <div style={{paddingTop:10}}>
+            {showSuccessBanner && (
+               <Alert variant="success" >
+               <Alert.Heading>Hey, nice to see you</Alert.Heading>
+               <p>
+                 Aww yeah, you successfully read this important alert message. This
+                 example text is going to run a bit longer so that you can see how
+                 spacing within an alert works with this kind of content.
+               </p>
+               <hr />
+               <p className="mb-0">
+                 Whenever you need to, be sure to use margin utilities to keep things
+                 nice and tidy.
+               </p>
+             </Alert>
+            )}
+            </div>
         </div>
     )
 

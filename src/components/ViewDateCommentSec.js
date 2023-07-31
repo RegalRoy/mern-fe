@@ -5,9 +5,12 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import UserService from '../services/user.service';
 import AuthService from "../services/auth.service";
 import DateCard from './DateCardMaps';
+import Alert from 'react-bootstrap/Alert';
 
 const ViewDate = () => {
   const [date, setDate] = useState({});
+  const [showSuccessBanner, setShowSuccessBanner] = useState(false); // State variable for success banner
+
   const { id } = useParams();
   const navigate = useNavigate();
   const currentUser = AuthService.getCurrentUser();
@@ -16,7 +19,12 @@ const ViewDate = () => {
       .catch((err) => console.log("error form get date details"));
   }, { id });
   const removeDate = (id) => {
-    UserService.DeleteDate(id);
+    UserService.DeleteDate(id).then(r => {
+      setShowSuccessBanner(true); // Show success banner after form submission
+      setTimeout(() => {
+        setShowSuccessBanner(false); navigate('/getDate') // Hide the success banner after a few seconds (adjust timing as needed)
+      }, 5000);
+    });
   }
   const updateDate = (id) => {
     navigate('/update-date/' + id)
@@ -69,7 +77,7 @@ const ViewDate = () => {
     })
   }
 
-  
+
 
 
   const rating = (e) => {
@@ -78,27 +86,27 @@ const ViewDate = () => {
     console.log(rating);
     const updatedDate = { ...date };
     console.log(updatedDate);
-  
+
     let currentUserFound = false;
-  
+
     updatedDate.rating.map(r => {
       if (r.currentUser === currentUser.username) {
         r.rate = rating;
         currentUserFound = true;
       }
     });
-  
+
     if (!currentUserFound) {
       updatedDate.rating.push({ currentUser: currentUser.username, rate: rating });
     }
-  
+
     console.log(updatedDate);
-  
+
     // Now you can use the 'updatedDate' object as needed:
     setDate(updatedDate);
     UserService.EditDate(id, updatedDate);
   }
-  
+
 
   return (
     <div className='container bg-white'>
@@ -235,15 +243,15 @@ const ViewDate = () => {
           <div >
             <h4>Rate this date!</h4>
             <div className="rate" style={{ float: "left" }}>
-              <input type="radio" id="star5" name="rate" value="5" onClick={(event) => rating(event)}/>
+              <input type="radio" id="star5" name="rate" value="5" onClick={(event) => rating(event)} />
               <label for="star5" title="text">5 stars</label>
-              <input type="radio" id="star4" name="rate" value="4" onClick={(event) => rating(event)}/>
+              <input type="radio" id="star4" name="rate" value="4" onClick={(event) => rating(event)} />
               <label for="star4" title="text">4 stars</label>
-              <input type="radio" id="star3" name="rate" value="3" onClick={(event) => rating(event)}/>
+              <input type="radio" id="star3" name="rate" value="3" onClick={(event) => rating(event)} />
               <label for="star3" title="text">3 stars</label>
-              <input type="radio" id="star2" name="rate" value="2" onClick={(event) => rating(event)}/>
+              <input type="radio" id="star2" name="rate" value="2" onClick={(event) => rating(event)} />
               <label for="star2" title="text">2 stars</label>
-              <input type="radio" id="star1" name="rate" value="1" onClick={(event) => rating(event)}/>
+              <input type="radio" id="star1" name="rate" value="1" onClick={(event) => rating(event)} />
               <label for="star1" title="text">1 star</label>
             </div>
           </div>
@@ -263,6 +271,24 @@ const ViewDate = () => {
 
           </div> : <div>You need to be registered to   comment on this date </div> : <div>  no comment outer </div>
       }
+
+      <div style={{ paddingTop: 10 }}>
+        {showSuccessBanner && (
+          <Alert variant="success" >
+            <Alert.Heading>Hey, nice to see you</Alert.Heading>
+            <p>
+              Aww yeah, you successfully read this important alert message. This
+              example text is going to run a bit longer so that you can see how
+              spacing within an alert works with this kind of content.
+            </p>
+            <hr />
+            <p className="mb-0">
+              Whenever you need to, be sure to use margin utilities to keep things
+              nice and tidy.
+            </p>
+          </Alert>
+        )}
+      </div>
 
     </div>
   )
