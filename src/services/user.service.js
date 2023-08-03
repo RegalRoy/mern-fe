@@ -31,12 +31,20 @@ const getModeratorBoard = () => {
     return axios.get("http://localhost:8080/api/test/getdate/"+id, { headers: authHeader() } )
   }
 
+  const GetPic =(picOwner) =>{
+    return axios.get("http://localhost:8080/api/test/postdate/pic/"+picOwner,{ headers: authHeader() } )
+  }
+
   const DeleteDate = (id) =>{
     return axios.delete("http://localhost:8080/api/test/getdate/"+id,{ headers: authHeader() } )
   }
 
   const EditDate =(id, dateObj)=>{
     return axios.put("http://localhost:8080/api/test/getdate/"+id,dateObj, {headers: authHeader() } )
+  }
+
+  const UploadPic = (dateObj) => {
+    return axios.post("http://localhost:8080/api/test/postdate/pic",dateObj, {headers: authHeader() } )
   }
 
   const UserService = {
@@ -48,7 +56,9 @@ const getModeratorBoard = () => {
     GetDate,
     ViewDate,
     DeleteDate,
-    EditDate
+    EditDate,
+    UploadPic,
+    GetPic
   };
   
   export default UserService;
@@ -60,3 +70,4 @@ const getModeratorBoard = () => {
   // app.put("/api/test/getdate/:id", [authJwt.verifyToken], controller.updateDate)
 
 
+//"/api/test/postdate/pic"

@@ -87,7 +87,7 @@ const DateCard = (props) => {
         <h4>Date: </h4>
         <p>{matchedMo + " / " + dayMatched}</p>
         <h4>Location:</h4>
-        <p>Location: {dog.location}</p>
+        <p>{dog.location}</p>
        
 
         <div className="MapSample">

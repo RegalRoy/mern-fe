@@ -30,7 +30,7 @@ const ShowDogDetails = () => {
   const dogPic = <DogCard dog={dog} />
   return (
     <div className='shadow-lg p-3 mb-5 bg-white rounded'>
-      <table className="">
+      <table className="table">
         <tbody>
           <tr>
             {/* <th scope='row'>1</th> */}
