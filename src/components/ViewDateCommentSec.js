@@ -9,14 +9,19 @@ import Alert from 'react-bootstrap/Alert';
 
 const ViewDate = () => {
   const [date, setDate] = useState({});
-  const [showSuccessBanner, setShowSuccessBanner] = useState(false); // State variable for success banner
+  const [datePic, setPhoto] = useState({ ownerId: "", photo: [] })
 
+  const [showSuccessBanner, setShowSuccessBanner] = useState(false); // State variable for success banner
+  const getInitialdatePics = () => {
+    UserService.GetPic(id).then(r => { setPhoto(r.data) })
+  }
   const { id } = useParams();
   const navigate = useNavigate();
   const currentUser = AuthService.getCurrentUser();
   useEffect(() => {
     UserService.ViewDate(id).then((res) => { setDate(res.data) })
       .catch((err) => console.log("error form get date details"));
+
   }, { id });
   const removeDate = (id) => {
     UserService.DeleteDate(id).then(r => {
@@ -107,6 +112,38 @@ const ViewDate = () => {
     UserService.EditDate(id, updatedDate);
   }
 
+  const handleFileChange = (event) => {
+    event.preventDefault();
+    setPhoto({ ...datePic,ownerId:id, photo: event.target.files[0] });
+    // setPhoto({
+    //   ownerId:id,
+    //   photo:[event.target.files[0]] 
+    // })
+    console.log("check...datephoto")
+    // console.log(datePic)
+  }
+
+  const handleCreateDog_photo = (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('ownerId', datePic.ownerId)
+    formData.append('photo', datePic.photo)
+    // formData.append('photo',datePic.photo)
+    if(formData){
+      console.log(formData)
+    }
+    console.log(datePic)
+
+    UserService.UploadPic(formData).then((r) => { console.log(r); setPhoto({ ownerId: "", photo: [] }) }).catch((e) => console.log("ERROR..." + e))
+
+  }
+
+  const handleShowPic = (event) => {
+    // event.preventDefault();
+    // const formData = new FormData();
+    // formData.append("ownerId", date._id);
+    UserService.GetPic(id).then(r => console.log(r.data))
+  }
 
   return (
     <div className='container bg-white'>
@@ -157,7 +194,11 @@ const ViewDate = () => {
             <td>location</td>
             <td>{date.location}</td>
           </tr>
-
+          <tr>
+            {/* <th scope='row'>4</th> */}
+            <td>Owner</td>
+            <td>{date.ownerId}</td>
+          </tr>
 
         </tbody>
       </table>
@@ -175,6 +216,10 @@ const ViewDate = () => {
           )}
           {/* ... (your existing code) ... */}
         </div>
+      </div>
+      <div>
+        Show Pic Option Here
+        <button onClick={() => handleShowPic()}>Show Pic</button>
       </div>
       {/* comment section start */}
 
@@ -239,7 +284,7 @@ const ViewDate = () => {
       }
 
       {
-        Array.isArray(date.participants) ? date.participants.includes(currentUser.username) ?
+        Array.isArray(date.participants) ? date.participants.includes(currentUser.username) || date.ownerId == currentUser.id ?
           <div >
             <h4>Rate this date!</h4>
             <div className="rate" style={{ float: "left" }}>
@@ -259,8 +304,11 @@ const ViewDate = () => {
           : "cannot"
       }
 
+
+
+
       {
-        Array.isArray(date.participants) ? date.participants.includes(currentUser.username) ?
+        Array.isArray(date.participants) ? date.participants.includes(currentUser.username) || date.ownerId == currentUser.id ?
           <div>
 
             <form className='container' style={{ float: "left" }}>
@@ -270,6 +318,25 @@ const ViewDate = () => {
             <button className='btn btn-primary' type="button" onClick={(e) => handleComment(e)}>POST Comment</button>
 
           </div> : <div>You need to be registered to   comment on this date </div> : <div>  no comment outer </div>
+      }
+
+      {
+        Array.isArray(date.participants) ? date.participants.includes(currentUser.username) || date.ownerId == currentUser.id ?
+          <div >
+            <form onSubmit={handleCreateDog_photo} encType="multipart/form-data">
+              <h4>Upload Pictures</h4>
+              <div className="mb-3">
+                <label for="formFile" className="form-label">Default file input example</label>
+                <input className="form-control" type="file" id="formFile" name="photo" onChange={handleFileChange} />
+              </div>
+              <input
+                type='submit'
+                className='btn btn-outline-warning btn-block mt-4'
+              />
+            </form>
+          </div>
+          : "Cannot Rate, Need to register for this date ..."
+          : "cannot"
       }
 
       <div style={{ paddingTop: 10 }}>
