@@ -6,12 +6,16 @@ import UserService from '../services/user.service';
 import AuthService from "../services/auth.service";
 import DateCard from './DateCardMaps';
 import Alert from 'react-bootstrap/Alert';
+import DateCardPic from './DogCardDate'
 
 const ViewDate = () => {
   const [date, setDate] = useState({});
   const [datePic, setPhoto] = useState({ ownerId: "", photo: [] })
 
   const [showSuccessBanner, setShowSuccessBanner] = useState(false); // State variable for success banner
+
+  const [playDatePics, setPlayDatePics] = useState([]);
+  const [showpic, setShowPic] = useState(false);
   const getInitialdatePics = () => {
     UserService.GetPic(id).then(r => { setPhoto(r.data) })
   }
@@ -114,7 +118,7 @@ const ViewDate = () => {
 
   const handleFileChange = (event) => {
     event.preventDefault();
-    setPhoto({ ...datePic,ownerId:id, photo: event.target.files[0] });
+    setPhoto({ ...datePic, ownerId: id, photo: event.target.files[0] });
     // setPhoto({
     //   ownerId:id,
     //   photo:[event.target.files[0]] 
@@ -129,7 +133,7 @@ const ViewDate = () => {
     formData.append('ownerId', datePic.ownerId)
     formData.append('photo', datePic.photo)
     // formData.append('photo',datePic.photo)
-    if(formData){
+    if (formData) {
       console.log(formData)
     }
     console.log(datePic)
@@ -142,7 +146,23 @@ const ViewDate = () => {
     // event.preventDefault();
     // const formData = new FormData();
     // formData.append("ownerId", date._id);
-    UserService.GetPic(id).then(r => console.log(r.data))
+    try{
+      UserService.GetPic(id).then(r => {
+        if(r.data){
+          setPlayDatePics(r.data.photo)
+        }
+        
+      })
+    }catch(e){
+      console.log(e)
+    }
+ 
+    if (showpic) {
+      setShowPic(false)
+    } else {
+      setShowPic(true)
+    }
+
   }
 
   return (
@@ -217,10 +237,22 @@ const ViewDate = () => {
           {/* ... (your existing code) ... */}
         </div>
       </div>
-      <div>
-        Show Pic Option Here
-        <button onClick={() => handleShowPic()}>Show Pic</button>
-      </div>
+
+      <h4>Show Pic Option Here</h4>
+      <button className='btn btn-primary' type="button" onClick={(e) => handleShowPic()}>
+
+        {showpic ? "Hide Pics" : "Show Pictures"}</button>
+      {showpic ? <header className="jumbotron">
+        <div className="horizontal-container">
+          {playDatePics.map((pics, k) => {
+            return <DateCardPic playDatePic={pics} key={k} />
+          })}
+
+        </div>
+      </header> : ""}
+
+
+
       {/* comment section start */}
 
       <div class="container">

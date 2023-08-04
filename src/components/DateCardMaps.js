@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useSyncExternalStore } from "react";
 import AuthService from "../services/auth.service";
+import UserService from '../services/user.service';
 const libraries = ["places"];
 
 
@@ -14,13 +15,25 @@ const DateCard = (props) => {
   const dayMatched = newDate.getDate();
   const [locationCenter, setLocationCenter] = useState(null);
   const [aveRating, setRating] = useState();
+  const [datePics, setPlayDatePics] = useState([])
   const currentUser = AuthService.getCurrentUser();
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyCeT8OkreuqLK67q6U1m5FEcHUZl2I3bU8", // Replace with your actual API key
     libraries,
   });
+  const getdatePhoto = () => {
+    try {
+      UserService.GetPic(dog._id).then(r => {
+        if (r.data) {
+          setPlayDatePics(r.data.photo)
+        }
 
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
   useEffect(() => {
     // Fetch location coordinates using Google Maps Geocoding API
     if (isLoaded && !loadError && dog.location) { // Add a check for dog.location
@@ -40,7 +53,8 @@ const DateCard = (props) => {
           console.error("Geocoding API Error:", status);
         }
       });
-    }
+    };
+    getdatePhoto();
   }, [dog.location, isLoaded, loadError]);
 
 
@@ -81,19 +95,25 @@ const DateCard = (props) => {
 
       <div className='desc'>
         <div>
-          <h4>Rating</h4>
+          <h4>Rating:</h4>
           {[...Array(5)].map((_, i) => (
             <span key={i} className={`fa fa-star ${i < aveRating ? "checked" : ""}`}></span>
           ))}
-          ({dog.rating.length})
+        <b>  ({dog.rating.length})</b>
+        </div>
+        <div>
+          <h4>Comment Thread:</h4><b> {dog.comments.length}</b> total comments
+        </div>
+        <div>
+          <h4>Photo Uploads:</h4><b> {datePics.length}</b> total photos
         </div>
         <div className="buttonContainer">
           {/* {dog.participants.includes(currentUser.username) ? <a href="#" className="btn btn-danger" onClick={() => props.UnregisterToPlaydate(dog._id)}>UnRegister</a> : <a href="#" className="btn btn-primary" onClick={() => props.registerToPlaydate(dog._id)}>Register</a>} */}
 
           {dog.ownerId === currentUser.id ? (
             <a href="#" className="btn btn-dangerOwner">
-            You Own This Date
-          </a>
+              You Own This Date
+            </a>
           ) : dog.participants.includes(currentUser.username) ? (
             <a href="#" className="btn btn-danger" onClick={() => props.UnregisterToPlaydate(dog._id)}>
               UnRegister

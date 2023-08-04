@@ -60,9 +60,10 @@ const App = () => {
 
   return (
     <div >
-      <div className="nav-container">
-        <Navbar bg="dark" data-bs-theme="dark" className="">
-          <Container>
+      <div className="nav-container" >
+
+        <Navbar bg="dark" data-bs-theme="dark" className="bg-body-tertiary" expand="lg" >
+          <Container >
             {/* {currentUser && (
               // <Navbar.Brand href="/home">Play Date Finder</Navbar.Brand>
               <img src={logo} style={{ width: '20%', height: 'auto' }}></img>
@@ -83,17 +84,17 @@ const App = () => {
 
 
                 {currentUser && (
-                 
+
                   <Nav.Link href="#link">
                     <li className="nav-item">
                       <Link to={"/profile"} className="nav-link">
                         Signed in as {currentUser.username}
                       </Link>
                     </li>
-                   
+
                   </Nav.Link>
 
-                 
+
 
                 )}
 
