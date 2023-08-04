@@ -83,12 +83,14 @@ const GetDate_ = (props) => {
 
 
     const dateList = matchedDates.map((dog, k) => <DateCardMaps dog={dog} key={k} registerToPlaydate={registerToPlaydate} UnregisterToPlaydate={UnregisterToPlaydate} participants={dog.participants} />)
-
+    const currentDate = new Date();
+    const currentDay = currentDate.getDate();
+    const currentMonth = currentDate.getMonth();
     return (
         <div className="container bg-white">
             <header className="jumbotron">
             <h1>Register your dog for playdates!</h1>
-                <Calendar matchedDates={matchedDates} month={7} year={2023} />
+                <Calendar matchedDates={matchedDates} month={currentMonth+1} year={2023} />
                 
                 {/* <div className='list'>{dateList}</div> */}
 

@@ -76,7 +76,11 @@ const GetDate = () => {
   const dateList = filteredDates.map((dog, k) => (
     <DateCardMaps dog={dog} key={k} registerToPlaydate={registerToPlaydate} UnregisterToPlaydate={UnregisterToPlaydate} participants={dog.participants} />
   ));
-  const cal = <CalendarView matchedDates={content_} month={7} year={2023} />
+  const currentDate = new Date();
+  const currentDay = currentDate.getDate();
+  const currentMonth = currentDate.getMonth();
+  console.log("current month is " + currentMonth)
+  const cal = <CalendarView matchedDates={content_} month={currentMonth+1} year={2023} />
 
   return (
     <div className="container bg-white">

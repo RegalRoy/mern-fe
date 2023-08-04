@@ -21,7 +21,7 @@ const DogCard = (props) => {
   }, [dog.photo])
 
   return (
-    <div className='card' style={{ width: '100%' }}>
+    <div className='card' style={{ width: '100%',height:'100%' }}>
 
       {photoUrl && <img src={photoUrl} alt="Dog Photo" />}
       {/* <img src='http://localhost:8080/uploads/dog.png' ></img> */}

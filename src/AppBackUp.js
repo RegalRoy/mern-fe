@@ -59,143 +59,149 @@ const App = () => {
   }
 
   return (
-    <div className="nav-container">
+    <div >
+      <div className="nav-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
-      <Navbar bg="dark" data-bs-theme="dark" className="">
-        <Container>
-          {currentUser && (
-            // <Navbar.Brand href="/home">Play Date Finder</Navbar.Brand>
-            <img src={logo} style={{ width: '20%', height: 'auto' }}></img>
-          )}
-          {/* <Navbar.Brand href="/home">Play Date Finder</Navbar.Brand> */}
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Navbar.Brand href="#home">
+        <Navbar bg="dark" data-bs-theme="dark" className="" style={{ height: '75px', width: "75%" }}>
+          <Container style={{ height: '50px' }}>
+            {/* {currentUser && (
+              // <Navbar.Brand href="/home">Play Date Finder</Navbar.Brand>
+              <img src={logo} style={{ width: '20%', height: 'auto' }}></img>
+            )} */}
+            {/* <Navbar.Brand href="/home">Play Date Finder</Navbar.Brand> */}
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Navbar.Brand href="#home">
 
-                <Link to={"/home"} className="nav-link">
-                  Home
-                </Link>
+                  <Link to={"/home"} className="nav-link">
+                    Home
+                  </Link>
 
-              </Navbar.Brand>
-
-
-
-  
-              {currentUser && (
-                <Nav.Link href="#link">
-                  <li className="nav-item">
-                    <Link to={"/profile"} className="nav-link">
-                      Signed in as {currentUser.username}
-                    </Link>
-                  </li>
-                </Nav.Link>
-              )}
+                </Navbar.Brand>
 
 
-              {currentUser ? (
-                <div className="navbar-nav ml-auto">
 
+
+                {currentUser && (
 
                   <Nav.Link href="#link">
-                    <NavDropdown title="Dog Options" id="basic-nav-dropdown">
+                    <li className="nav-item">
+                      <Link to={"/profile"} className="nav-link">
+                        Signed in as {currentUser.username}
+                      </Link>
+                    </li>
 
-                      {/* <NavDropdown.Item href="#action/3.1"> <Link to={"/addDog"} className="">
+                  </Nav.Link>
+
+
+
+                )}
+
+
+                {currentUser ? (
+                  <div className="navbar-nav ml-auto">
+
+
+                    <Nav.Link href="#link">
+                      <NavDropdown title="Dog Options" id="basic-nav-dropdown">
+
+                        {/* <NavDropdown.Item href="#action/3.1"> <Link to={"/addDog"} className="">
                         Add Dog!
                       </Link>
                       </NavDropdown.Item> */}
 
-                      <Nav.Item>
-                        <Nav.Link href="/addDog">Add Dog</Nav.Link>
-                      </Nav.Item>
-                      <Nav.Item>
-                        <Nav.Link href="/user"> Your Dog List</Nav.Link>
-                      </Nav.Item>
+                        <Nav.Item>
+                          <Nav.Link href="/addDog">Add Dog</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                          <Nav.Link href="/user"> Your Dog List</Nav.Link>
+                        </Nav.Item>
 
-                      {/* <NavDropdown.Item href="#action/3.1"> <Link to={"/user"} className="">
+                        {/* <NavDropdown.Item href="#action/3.1"> <Link to={"/user"} className="">
                         Your Dog List
                       </Link>
                       </NavDropdown.Item> */}
 
 
-                    </NavDropdown>
-                  </Nav.Link>
+                      </NavDropdown>
+                    </Nav.Link>
 
-                  <Nav.Link href="#link">
-                    <NavDropdown title="PLayDaate Options" id="basic-nav-dropdown">
+                    <Nav.Link href="#link">
+                      <NavDropdown title="PLayDaate Options" id="basic-nav-dropdown">
 
-                      {/* <NavDropdown.Item href="#action/3.1"> <Link to={"/addDate"} className="">
+                        {/* <NavDropdown.Item href="#action/3.1"> <Link to={"/addDate"} className="">
                         Add a Playdate!
                       </Link>
                       </NavDropdown.Item> */}
 
-                      <Nav.Item>
-                        <Nav.Link href="/addDate">  Add a Playdate!</Nav.Link>
-                      </Nav.Item>
+                        <Nav.Item>
+                          <Nav.Link href="/addDate">  Add a Playdate!</Nav.Link>
+                        </Nav.Item>
 
-                      {/* <NavDropdown.Item href="#action/3.1">   <Link to={"/getDate"} className="">
+                        {/* <NavDropdown.Item href="#action/3.1">   <Link to={"/getDate"} className="">
                         Your Playdate!
                       </Link>
                       </NavDropdown.Item> */}
 
-                      <Nav.Item>
-                        <Nav.Link href="/getDate">  Your Playdate!</Nav.Link>
-                      </Nav.Item>
+                        <Nav.Item>
+                          <Nav.Link href="/getDate"> Created Playdate!</Nav.Link>
+                        </Nav.Item>
 
-                      {/* <NavDropdown.Item href="#action/3.1">   <Link to={"/viewAvailableDates"} className="">
+                        {/* <NavDropdown.Item href="#action/3.1">   <Link to={"/viewAvailableDates"} className="">
                         Register for Playdate!
                       </Link>
                       </NavDropdown.Item> */}
 
-                      <Nav.Item>
-                        <Nav.Link href="/viewAvailableDates">  Your Playdate!</Nav.Link>
-                      </Nav.Item>
+                        <Nav.Item>
+                          <Nav.Link href="/viewAvailableDates">Join Playdates!</Nav.Link>
+                        </Nav.Item>
 
 
-                    </NavDropdown>
-                  </Nav.Link>
+                      </NavDropdown>
+                    </Nav.Link>
 
 
-                  <Nav.Link href="#link">
-                    <li className="nav-item">
-                      <a href="/login" className="nav-link" onClick={logOut}>
-                        LogOut
-                      </a>
-                    </li>
-                  </Nav.Link>
-
-
-
-
-                </div>
-              ) : (
-                <div className="navbar-nav ml-auto">
-                  <Nav.Link href="#link">
-                    <li className="nav-item">
-                      <Link to={"/login"} className="nav-link">
-                        Login
-                      </Link>
-                    </li>
-                  </Nav.Link>
-                  <Nav.Link href="#">
-                    <li className="nav-item">
-                      <Link to={"/register"} className="nav-link">
-                        Sign Up
-                      </Link>
-                    </li>
-                  </Nav.Link>
-                </div>
-              )}
-
-
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+                    <Nav.Link href="#link">
+                      <li className="nav-item">
+                        <a href="/login" className="nav-link" onClick={logOut}>
+                          LogOut
+                        </a>
+                      </li>
+                    </Nav.Link>
 
 
 
-      <div className="">
+
+                  </div>
+                ) : (
+                  <div className="navbar-nav ml-auto">
+                    <Nav.Link href="#link">
+                      <li className="nav-item">
+                        <Link to={"/login"} className="nav-link">
+                          Login
+                        </Link>
+                      </li>
+                    </Nav.Link>
+                    <Nav.Link href="#">
+                      <li className="nav-item">
+                        <Link to={"/register"} className="nav-link">
+                          Sign Up
+                        </Link>
+                      </li>
+                    </Nav.Link>
+                  </div>
+                )}
+
+
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+
+      </div>
+
+      <div className="content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
