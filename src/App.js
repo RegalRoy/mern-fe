@@ -9,7 +9,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-import logo from './logo/group.png'
+import logo from './logo/snifferslogo-removebg.png'
 
 import AuthService from "./services/auth.service";
 import DogService from "./services/dog.service";
@@ -61,14 +61,17 @@ const App = () => {
   return (
     <div >
       <div className="nav-container" >
+      
 
         <Navbar bg="dark" data-bs-theme="dark" className="bg-body-tertiary" expand="lg" >
+        <img src={logo} alt="Logo" style={{ width: '20%', height: 'auto' }} />
           <Container >
             {/* {currentUser && (
               // <Navbar.Brand href="/home">Play Date Finder</Navbar.Brand>
               <img src={logo} style={{ width: '20%', height: 'auto' }}></img>
             )} */}
             {/* <Navbar.Brand href="/home">Play Date Finder</Navbar.Brand> */}
+            
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
@@ -128,7 +131,7 @@ const App = () => {
                     </Nav.Link>
 
                     <Nav.Link href="#link">
-                      <NavDropdown title="PLayDaate Options" id="basic-nav-dropdown">
+                      <NavDropdown title="PLayDate Options" id="basic-nav-dropdown">
 
                         {/* <NavDropdown.Item href="#action/3.1"> <Link to={"/addDate"} className="">
                         Add a Playdate!
