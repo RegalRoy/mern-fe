@@ -68,10 +68,11 @@ const GetDate = () => {
   const handleDateChange = (date) => {
     setSelectedDate(date); // Update the selected date
   };
-
-  const filteredDates = content.filter(
+  console.log("Content is:")
+  console.log(Array.isArray(content))
+  const filteredDates = Array.isArray(content)?content.filter(
     (date) => date.ownerId === currentUser.id
-  );
+  ):[];
 
   const dateList = filteredDates.map((dog, k) => (
     <DateCardMaps dog={dog} key={k} registerToPlaydate={registerToPlaydate} UnregisterToPlaydate={UnregisterToPlaydate} participants={dog.participants} />

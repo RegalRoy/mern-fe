@@ -24,9 +24,14 @@ const GetDate=()=>{
             setContent(_content);
           }
         );
+        console.log("Content is:")
+        console.log(content)
       }, [])
 
-    const dateListForOwners = content.filter(date=>date.ownerId==currentUser.id)
+      
+      console.log("Content is:")
+        console.log(content)
+    const dateListForOwners = Array.isArray(content)?content.filter(date=>date.ownerId==currentUser.id):[]
     const dateList = dateListForOwners.map((dog ,k) => <DateCard dog={dog} key={k}/>)
 
     return(
