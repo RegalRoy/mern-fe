@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 const DogCard = (props) => {
   const [photoUrl, setPhotoUrl] = useState("");
   const dog = props.dog;
-  const backendBaseUrl = "http://localhost:8080/uploads/"; // Replace with your actual backend URL
+  const backendBaseUrl = "https://project-mern-be.onrender.com/uploads/"; // Replace with your actual backend URL
   useEffect(() => {
     const filePath = dog.photo;
     console.log(filePath)
