@@ -1,7 +1,8 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = "http://localhost:8080/api/test/dog";
+// const API_URL = "http://localhost:8080/api/test/dog";
+const API_URL = "https://project-mern-be.onrender.com/api/test/dog"
 
 const AddDogTest = () =>{
    return axios.get(API_URL, {headers:authHeader()});
