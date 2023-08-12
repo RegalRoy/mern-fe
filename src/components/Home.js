@@ -50,10 +50,12 @@ const Home = () => {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
+          <br></br>
         {/* <button className="search-button">Search</button> */}
-        <button className="search-button" onClick={handleSearch}>
+        <button type="button" className='btn btn-primary' onClick={handleSearch}>
             Search
           </button>
+          
       </div>
 
       <img
