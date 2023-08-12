@@ -8,14 +8,15 @@ import Button from 'react-bootstrap/Button';
 const DogCard = (props) => {
   const [photoUrl, setPhotoUrl] = useState();
   const playDatePic = props.playDatePic
-  // const backendBaseUrl = "https://project-mern-be.onrender.com/date_uploads/"; // Replace with your actual backend URL
-  const backendBaseUrl = "https://project-mern-be.onrender.com/"; // Replace with your actual backend URL
+  const backendBaseUrl = "https://project-mern-be.onrender.com/date_uploads/"; // Replace with your actual backend URL
+  // const backendBaseUrl = "https://project-mern-be.onrender.com/"; // Replace with your actual backend URL
   useEffect(() => {
     let urlArr = ""
     if (playDatePic) {
 
 
-      urlArr = backendBaseUrl + playDatePic.split('\\').pop();
+      // urlArr = backendBaseUrl + playDatePic.split('\\').pop();
+      urlArr = backendBaseUrl + playDatePic.split("/").pop();
 
 
     }
