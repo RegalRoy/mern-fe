@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+import '../App.css'
 import { Link } from "react-router-dom";
 
 import UserService from "../services/user.service";
 
 const Home = () => {
   const [content, setContent] = useState("");
+  const [searchText, setSearchText] = useState('');
+  const [dogImageUrl, setDogImageUrl] = useState('');
+  const apiUrl = 'https://dog.ceo/api/breed/';
 
   useEffect(() => {
     UserService.getPublicContent().then(
@@ -21,14 +25,56 @@ const Home = () => {
     );
   }, []);
 
+  const handleSearch = async () => {
+    if (searchText) {
+      try {
+        const response = await fetch(`${apiUrl}${searchText}/images/random`);
+        const data = await response.json();
+        setDogImageUrl(data.message);
+        console.log(searchText);
+      } catch (error) {
+        console.error('Error fetching dog image:', error);
+      }
+    }
+  };
+
   return (
     <div className="home-container">
-      <header className="jumbotron">
-        <img
-          src={content}
-          alt="alt title"
-          className="rounded mx-auto d-block logo-img"
+    <header className="jumbotron">
+    <div className="centered-search">
+      <p>Want to see a different dog breed? Search Here.</p>
+        <input
+            type="text"
+            placeholder="Ex: shiba"
+            className="search-input"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+        {/* <button className="search-button">Search</button> */}
+        <button className="search-button" onClick={handleSearch}>
+            Search
+          </button>
+      </div>
+
+      <img
+          src={searchText && dogImageUrl ? dogImageUrl : content} // Use dogImageUrl if there's a search and dogImageUrl is available, otherwise use content
+          alt={searchText && dogImageUrl ? "Dog" : "alt title"} // Alt text depending on search and dogImageUrl availability
+          className="rounded mx-auto d-block dog-img"
         />
+
+      {/* <img
+        src={content}
+        alt="alt title"
+        className="rounded mx-auto d-block logo-img"
+      /> */}
+
+          {/* <img
+            src={dogImageUrl}
+            alt="Dog"
+            className="rounded mx-auto d-block dog-img"
+          /> */}
+        
+
         <div className="shadow-lg p-3 mb-5 bg-white rounded">
           <div id="about" className="container">
             <div className="row">
