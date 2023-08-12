@@ -20,31 +20,31 @@ const getModeratorBoard = () => {
   };
 
   const AddDate = (dateObj) => {
-    return axios.post("http://localhost:8080/api/test/postdate", dateObj, { headers: authHeader() })
+    return axios.post(API_URL+"postdate", dateObj, { headers: authHeader() })
   }
 
   const GetDate = () =>{
-    return axios.get("http://localhost:8080/api/test/getdate", { headers: authHeader() })
+    return axios.get(API_URL+"getdate", { headers: authHeader() })
   }
 
   const ViewDate = (id) =>{
-    return axios.get("http://localhost:8080/api/test/getdate/"+id, { headers: authHeader() } )
+    return axios.get(API_URL+"getdate/"+id, { headers: authHeader() } )
   }
 
   const GetPic =(picOwner) =>{
-    return axios.get("http://localhost:8080/api/test/postdate/pic/"+picOwner,{ headers: authHeader() } )
+    return axios.get(API_URL+"postdate/pic/"+picOwner,{ headers: authHeader() } )
   }
 
   const DeleteDate = (id) =>{
-    return axios.delete("http://localhost:8080/api/test/getdate/"+id,{ headers: authHeader() } )
+    return axios.delete(API_URL+"getdate/"+id,{ headers: authHeader() } )
   }
 
   const EditDate =(id, dateObj)=>{
-    return axios.put("http://localhost:8080/api/test/getdate/"+id,dateObj, {headers: authHeader() } )
+    return axios.put(API_URL+"getdate/"+id,dateObj, {headers: authHeader() } )
   }
 
   const UploadPic = (dateObj) => {
-    return axios.post("http://localhost:8080/api/test/postdate/pic",dateObj, {headers: authHeader() } )
+    return axios.post(API_URL+"postdate/pic",dateObj, {headers: authHeader() } )
   }
 
   const UserService = {
